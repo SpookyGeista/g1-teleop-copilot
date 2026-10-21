@@ -15,11 +15,15 @@
     },
     {
       "path": "README.md",
-      "sha256": "6a2b8968b535952a173ad78ef29f0d096ec4ecf1f09e9b3cf1698586db6bf1d0"
+      "sha256": "837b4e87a5d585336e0adf9eb8cd4bce75b706ddf5d7bea55e4a8557def99a0e"
     },
     {
       "path": "configs/copilot.example.json",
       "sha256": "230de6a6d91fdb31e77e7efa8141ec984f15f4ee6d72e525e739e75d16321cd4"
+    },
+    {
+      "path": "docs/TOOLS.md",
+      "sha256": "fe6e04cc5a1d23af2aff624b960a09e5412c6f90b59fa2c05d53d2defbfef808"
     },
     {
       "path": "pytest.ini",
@@ -86,6 +90,10 @@
       "sha256": "9c17a140e9e6eba8c2e7a57309d3a7721d43ced69a837067a223c297f2fe2340"
     },
     {
+      "path": "teleop_assist/copilot/assets.py",
+      "sha256": "63051503c741c74870950052de52714fc5458106ad795c1be20c57f50b0481a8"
+    },
+    {
       "path": "teleop_assist/copilot/assets/demo_cylinder/candidate.json",
       "sha256": "f6aa4032e97245325b322c262f4ff8e28824479107fe12861d02700311bfbca4"
     },
@@ -124,10 +132,6 @@
     {
       "path": "teleop_assist/copilot/assets/manual_neutral/provenance.json",
       "sha256": "52fc3bead6c812b04abbafe392a2decab78967bc74cf637f76bf57cc252462c3"
-    },
-    {
-      "path": "teleop_assist/copilot/assets.py",
-      "sha256": "63051503c741c74870950052de52714fc5458106ad795c1be20c57f50b0481a8"
     },
     {
       "path": "teleop_assist/copilot/audit_trace.py",

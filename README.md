@@ -2,6 +2,9 @@
 
 Operator-controlled orientation assistance for the G1's right hand in Isaac Sim. The application provides object selection, grasp-proposal processing, state checks, camera preview, and a browser interface. The documented setup keeps hand position manual and fingers fixed.
 
+
+[Tool guide](docs/TOOLS.md): commands, inputs, outputs, and operating sequence.
+
 ## Initialize and test
 
 Use Python 3.11:
