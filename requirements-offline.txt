@@ -1,0 +1,3 @@
+# Dependencies for the documented offline test subset.
+numpy==1.26.0
+pytest==9.0.3

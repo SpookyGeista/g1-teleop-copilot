@@ -1,0 +1,1345 @@
+{
+  "prepared_date": "2026-10-21",
+  "files": [
+    {
+      "path": ".gitignore",
+      "sha256": "09f81f49edc4cea9d07ecee5739802dba8f0e44425b125f5d35a007e35c6669f"
+    },
+    {
+      "path": "ASSET_DEPENDENCIES.json",
+      "sha256": "e5eacec17f5283fcdc3cbf4b0bfdc8867e4287dfaff291b6fbf03ab4b9fda17b"
+    },
+    {
+      "path": "DEPENDENCIES.json",
+      "sha256": "9cbd2cefdeddbddda70a37c33ea0f300e6becec24e52da58646e689e90be1397"
+    },
+    {
+      "path": "README.md",
+      "sha256": "fc7c9ee5c9e47690b0861e3831d5041e60e1a148e9c63cd7a78fea02cc8d0a81"
+    },
+    {
+      "path": "configs/copilot.example.json",
+      "sha256": "230de6a6d91fdb31e77e7efa8141ec984f15f4ee6d72e525e739e75d16321cd4"
+    },
+    {
+      "path": "pytest.ini",
+      "sha256": "6c6ccf864e8f2d2e0223ee8e39bfde660c12435aa37d81e2b14000a6bee15003"
+    },
+    {
+      "path": "requirements-models.txt",
+      "sha256": "c7d190edc71749eb7ad985641cdf3ef343369417ded75105b9baaa4b423a6843"
+    },
+    {
+      "path": "requirements-offline.txt",
+      "sha256": "a397020d8484fc118f5bcdf4137d4d87c6809f83aa8aa5fe9d6fcbd8d9edbb36"
+    },
+    {
+      "path": "requirements-pose.txt",
+      "sha256": "7cd89f0a9d4cc075656e3c0da9f65f226480646b8186f15a33181ff2aedbc773"
+    },
+    {
+      "path": "run_assist.py",
+      "sha256": "8909555978b451806ff10b91631f6028a2e53499804aae8220dbe1b4fbe0781d"
+    },
+    {
+      "path": "run_copilot.py",
+      "sha256": "12aba41acd4b3ea768deff17fce9a36b2e63d22d52fce752901015e788104e4b"
+    },
+    {
+      "path": "teleop_assist/__init__.py",
+      "sha256": "46d987c5202c80314e52a8e923eaa413832f6b1b50a3aa41d2536ffdaba4c422"
+    },
+    {
+      "path": "teleop_assist/actions.py",
+      "sha256": "609d4b24983d6efa2a9cd23141b94bf12319d5e8dbd8749f7a704aedc7b461ac"
+    },
+    {
+      "path": "teleop_assist/arm_benchmark.py",
+      "sha256": "b080ec8a95085f15d1e71f11e92df153b6ddc36122076715007c3cb45bd60f4d"
+    },
+    {
+      "path": "teleop_assist/cad_identity.py",
+      "sha256": "bf2936798f122fae125957e5cea331f3f930703275e021b9893cf191e71d95a4"
+    },
+    {
+      "path": "teleop_assist/cad_overlay.py",
+      "sha256": "97e4fdd895e37c3bd6b7e75cd1688f4c219b54077fb7e780076c210f23096b67"
+    },
+    {
+      "path": "teleop_assist/cad_surface.py",
+      "sha256": "2a763980b8559a9b9ce8740c8126e2d2db72b51ca1caf33317400e8e8a9e0170"
+    },
+    {
+      "path": "teleop_assist/control_ownership.py",
+      "sha256": "49c3cdb0047075f134c10e8f302c692dd066125c50c4d2b1e53aebeccd0b0788"
+    },
+    {
+      "path": "teleop_assist/copilot/__init__.py",
+      "sha256": "139abb1501e5c007364cb2c2c0e8fbd9ae4f045a2cb0a1675afe5ad01f9c1e5a"
+    },
+    {
+      "path": "teleop_assist/copilot/arm_collision.py",
+      "sha256": "e21aa272a8392622ab676e1cfd228b02fe2ef27182c858096200f0163b2d88be"
+    },
+    {
+      "path": "teleop_assist/copilot/asset_paths.py",
+      "sha256": "9c17a140e9e6eba8c2e7a57309d3a7721d43ced69a837067a223c297f2fe2340"
+    },
+    {
+      "path": "teleop_assist/copilot/assets/demo_cylinder/candidate.json",
+      "sha256": "f6aa4032e97245325b322c262f4ff8e28824479107fe12861d02700311bfbca4"
+    },
+    {
+      "path": "teleop_assist/copilot/assets/demo_cylinder/initialization.json",
+      "sha256": "567f445a6568165ad349e829808ffb0097c437ddca468e290ddbe22005dd2ac1"
+    },
+    {
+      "path": "teleop_assist/copilot/assets/demo_cylinder/provenance.json",
+      "sha256": "f0ca051ccec990d446b13bab18c8784491a4d4045b03567d45a1bae69e3f8974"
+    },
+    {
+      "path": "teleop_assist/copilot/assets/dex3_right/config.json",
+      "sha256": "8ae743a3acb77343a13e2d2ce66e696255ff33383c5689f713b160b6550bba80"
+    },
+    {
+      "path": "teleop_assist/copilot/assets/dex3_right/contact_patches.json",
+      "sha256": "1b793cd5de317b41a9f58a9b7979ca7bfd3c9ae090ccf67e23afadc96536fc10"
+    },
+    {
+      "path": "teleop_assist/copilot/assets/g1_wrist_camera_collision.json",
+      "sha256": "aefabb8a6f53c897e17df0bcb0903512c1c12d6382d10a60859e55cbc117f90a"
+    },
+    {
+      "path": "teleop_assist/copilot/assets/g1_wrist_camera_collision_v2.json",
+      "sha256": "611a4038c5a8fe8273b1301181869dc7c431f4d48f2a890078717442b9e597b3"
+    },
+    {
+      "path": "teleop_assist/copilot/assets/manual_neutral/initialization.json",
+      "sha256": "0ddc3f9e46f3e63935ae7a04668c37e39a7334815bd5bce637deab8dec3c9c30"
+    },
+    {
+      "path": "teleop_assist/copilot/assets/manual_neutral/preparation.json",
+      "sha256": "377380bf91159c511f0f93e7bf61434476341e4eec4d739ee676fc6b32e80f1e"
+    },
+    {
+      "path": "teleop_assist/copilot/assets/manual_neutral/provenance.json",
+      "sha256": "52fc3bead6c812b04abbafe392a2decab78967bc74cf637f76bf57cc252462c3"
+    },
+    {
+      "path": "teleop_assist/copilot/assets.py",
+      "sha256": "63051503c741c74870950052de52714fc5458106ad795c1be20c57f50b0481a8"
+    },
+    {
+      "path": "teleop_assist/copilot/audit_trace.py",
+      "sha256": "d65b1c1db88481408b776bb312a6b9ca3b4ed8acdfcab62bd389332d3d32caab"
+    },
+    {
+      "path": "teleop_assist/copilot/camera_publisher.py",
+      "sha256": "2fdadcea1f7113f3a234d4296b973f95a3c427a2d544f79ac40611f603b3d733"
+    },
+    {
+      "path": "teleop_assist/copilot/collision.py",
+      "sha256": "9042b4ae21a2e3ced0521f77ed10250b18092ad82e0d1d8c5016007241dcdaef"
+    },
+    {
+      "path": "teleop_assist/copilot/controller.py",
+      "sha256": "6ae8fbce995902af903389606a2a937dab78ffce3eea74b1a947e09d0443cdc3"
+    },
+    {
+      "path": "teleop_assist/copilot/dashboard.py",
+      "sha256": "608f6062e911280791da4d22cb50c2a2dffc8a6e77c63031ae3f3f124e9be20f"
+    },
+    {
+      "path": "teleop_assist/copilot/depth_cleanup.py",
+      "sha256": "ba7110428d7d1c55a07fef7f6f11f779b28cc1624203451d73b0b9c19e8f7a27"
+    },
+    {
+      "path": "teleop_assist/copilot/endpoint_ik.py",
+      "sha256": "ebe95879736795e584d3d4298d235ad6f55b9f9f21089c82d1786f33ce15fcaa"
+    },
+    {
+      "path": "teleop_assist/copilot/frame_sync.py",
+      "sha256": "67468110bf95e6db586e3d5718aa23c233068af207746034db367b71470dd2fd"
+    },
+    {
+      "path": "teleop_assist/copilot/frames.py",
+      "sha256": "119b391955f2a7816816f5ccf4d3ba6e38805f710585e7f9eb2fd826752e349e"
+    },
+    {
+      "path": "teleop_assist/copilot/full_ik.py",
+      "sha256": "d5fd299b4cebd1688f38fa504c9b5b5770a03eb72b95845ff41eae24e09de811"
+    },
+    {
+      "path": "teleop_assist/copilot/grasp_model.py",
+      "sha256": "098e228edda62d3a3588b3138b333cd9445994dd389cbb8b8c6e9f16361b700b"
+    },
+    {
+      "path": "teleop_assist/copilot/guard.py",
+      "sha256": "d7e98ee0665362d052578af5952a4f7357f6e00ce099244af2ce9e99e9b03f7a"
+    },
+    {
+      "path": "teleop_assist/copilot/kinematics.py",
+      "sha256": "3e0a8a381559eadc88970ebfc6b4b1581a7c4185e09ca6fcee4f9d38b716ba89"
+    },
+    {
+      "path": "teleop_assist/copilot/live_sim_proposals.py",
+      "sha256": "dc17df10c1e423393b09501bdf619366e67067e907e314e11b30e6984932aaf9"
+    },
+    {
+      "path": "teleop_assist/copilot/mailbox.py",
+      "sha256": "515e7c073633890341d5557adddbb59ffbdcc21121e5d72a9e2dcc4b123c1e6e"
+    },
+    {
+      "path": "teleop_assist/copilot/manual_fingers.py",
+      "sha256": "b3eab10d163cd356409330789252d04ad4477ca084879cf280647ec50ed37fff"
+    },
+    {
+      "path": "teleop_assist/copilot/manual_grasp_assist.py",
+      "sha256": "e6203fb5b9d876ac3865f0ceb29eb722fadccda116c9e6d180c5dceb4dfe2ecd"
+    },
+    {
+      "path": "teleop_assist/copilot/manual_sim_control.py",
+      "sha256": "fb4ab4c7c9dcdd97780bfeb0259ccf884ca1cfcbbd4eca56d76203f2f447eb5e"
+    },
+    {
+      "path": "teleop_assist/copilot/model_worker.py",
+      "sha256": "06dd75686446eaeefdf17e950a356062cafe6b2b9552796f3c25b29a99cb18ad"
+    },
+    {
+      "path": "teleop_assist/copilot/motion_process.py",
+      "sha256": "6d820a4c8f545d45808b47f3d672fc6984001542b4c60779c9c7bdc00bc4dfd3"
+    },
+    {
+      "path": "teleop_assist/copilot/observations.py",
+      "sha256": "0c53e7f3110e4f20ef9be33189ba0ac4f20feed0494481d10583d5f8005e9473"
+    },
+    {
+      "path": "teleop_assist/copilot/original_sim_runtime.py",
+      "sha256": "223254261428774ab633212e6facc9e0ec2fad591bb1b8ae62b92039480f2ee5"
+    },
+    {
+      "path": "teleop_assist/copilot/original_sim_snapshot.py",
+      "sha256": "435da49f8da5f7e9bd08925d08ab5810902cfd981156ec5c49ca5e6dc7d12588"
+    },
+    {
+      "path": "teleop_assist/copilot/original_xr_sender.py",
+      "sha256": "20fd2429e7f4e97410bf32ce5b2abca7514f3b76f7651d4518cbc01cbc70c4a0"
+    },
+    {
+      "path": "teleop_assist/copilot/physx_bench.py",
+      "sha256": "23c10840ef20aab4adf09b1381c517ac478a282f812cd9b4bd25517d5731a0b6"
+    },
+    {
+      "path": "teleop_assist/copilot/preview.py",
+      "sha256": "7acb44faeef9bbd7795f7bfc6260476f5181a34ac80a1eac635c10bccd09713e"
+    },
+    {
+      "path": "teleop_assist/copilot/process.py",
+      "sha256": "f6b9377ad464c5ec76d55aaf2c269451cc37aa05a418a5618fae800e45480e22"
+    },
+    {
+      "path": "teleop_assist/copilot/render_sync.py",
+      "sha256": "b8f2e6a88856c29c986e3c747a934616540f717e2703ff6a7ffbc0bb5e782695"
+    },
+    {
+      "path": "teleop_assist/copilot/service.py",
+      "sha256": "16e8e928282d132317c9b1fcc5696d6a2fd045e18537711afba917d93a8d5a0a"
+    },
+    {
+      "path": "teleop_assist/copilot/sim_actor.py",
+      "sha256": "a2aba1e751aa4026fbee734d9ec3f9de82ac71d51426abeb2ae296efdccfed0e"
+    },
+    {
+      "path": "teleop_assist/copilot/sim_control.py",
+      "sha256": "37dbfa7a234d253bad04abb67aecce035430214a94b56aaa8a8ca0c317360a3f"
+    },
+    {
+      "path": "teleop_assist/copilot/sim_preview.py",
+      "sha256": "7b17a6fc48f8f0a8df4735632ba08b7ba8fa8ddab35f8628eb7f742bbce3f07f"
+    },
+    {
+      "path": "teleop_assist/copilot/sim_snapshot.py",
+      "sha256": "eaf5f82244b29a05bb2d7fff8e344ca7b70ff42c8bd05d0bfc439055c4dec7a1"
+    },
+    {
+      "path": "teleop_assist/copilot/sim_target_feed.py",
+      "sha256": "9f883da3a907c87f838ec761c6fd4768cceb215f980616521daed55aad365632"
+    },
+    {
+      "path": "teleop_assist/copilot/source_evidence.py",
+      "sha256": "553c837bdf84a4c0fc804d168fec5f8877900245c5cab20f31703473dde5acc1"
+    },
+    {
+      "path": "teleop_assist/copilot/static/index.html",
+      "sha256": "d4eee2f9dc9eb5f1444378e0ff0634df90151d2e2d0bc3e655aef2ad1de7c646"
+    },
+    {
+      "path": "teleop_assist/copilot/static/sim.html",
+      "sha256": "7fd308b785b4e0d6b894d70004d4aae876e866e9ba1c19276a0648378c991c55"
+    },
+    {
+      "path": "teleop_assist/copilot/stationarity.py",
+      "sha256": "6d9c9cd282059a03a5aa0957802a3b2fd74bf7d60c2a0b009e2e958a587c740d"
+    },
+    {
+      "path": "teleop_assist/copilot/types.py",
+      "sha256": "31e45679624782cf84f26300e3a75c24287ad83965739f2a93534a6604680ba2"
+    },
+    {
+      "path": "teleop_assist/copilot/unitree_codec.py",
+      "sha256": "d73112fae828b9d37201cd3fb973c5146f3643ed7860d75e51fddc5c4df3da8a"
+    },
+    {
+      "path": "teleop_assist/copilot/vr_buttons.py",
+      "sha256": "10aee08b3f1f0e55994be563068478e96b42ef739bae23c117ed043d264bc7ac"
+    },
+    {
+      "path": "teleop_assist/copilot/xr_adapter.py",
+      "sha256": "71b3f0dbc211bdce42b09f0c13d84c2b6b2efef83a0309def637c37806a377d4"
+    },
+    {
+      "path": "teleop_assist/copilot/xr_camera.py",
+      "sha256": "0badf3f4cba9d5a591f1f6fae606614347e135b9bbfad3ee95491bcddff59c16"
+    },
+    {
+      "path": "teleop_assist/copilot/xr_grasp_overlay.py",
+      "sha256": "b1a4caee379972ed5c72f7e439bce95041fc24b36169f843d3686e76ef0e6f78"
+    },
+    {
+      "path": "teleop_assist/copilot/xr_panels.py",
+      "sha256": "ed27cf77ef8a072957b95fe70e3596277dd628c380d1625ccd540ce14a6956b6"
+    },
+    {
+      "path": "teleop_assist/copilot/xr_send.py",
+      "sha256": "79828bb9137438441c6891a669f4e6e291eb951a17e18e463cac5579df8550e7"
+    },
+    {
+      "path": "teleop_assist/core.py",
+      "sha256": "8fde6d1091dbbaffc062ccab2351d1154c6a55c366c8a042b16d227c7873c425"
+    },
+    {
+      "path": "teleop_assist/evaluation.py",
+      "sha256": "6abb390456c96efedd5c10fe76d544bb93991500b3ee1cfb57f2b0794dc79c29"
+    },
+    {
+      "path": "teleop_assist/fixture_assets.py",
+      "sha256": "0932dd71834d8584ddaa84f4a96f168623428a75176b15eb3d204c22c71900d5"
+    },
+    {
+      "path": "teleop_assist/foundation_pose.py",
+      "sha256": "0a15e38df0973a23b9a14fe96713a3e1816a05cad29959211b4f248d91c922fd"
+    },
+    {
+      "path": "teleop_assist/intent.py",
+      "sha256": "06ce6b67e62b0a47fa82edf6a9759b0a52a7600c4973de5b8a1950faf4edd4f5"
+    },
+    {
+      "path": "teleop_assist/isaac_backend.py",
+      "sha256": "5192b793c9e8a5c41f67b162fa9a9f01cbb3f7c49301be519fb2225d971047bc"
+    },
+    {
+      "path": "teleop_assist/learned_perception.py",
+      "sha256": "26aeab196309f994fe87ce402d2b645113de0733dd4c0904bbc780d00bbb4b71"
+    },
+    {
+      "path": "teleop_assist/manual_release_evaluation.py",
+      "sha256": "370ab2d9297d400ac2eac1f496cc4fabcf4969aa4bd0cebf3fee7a97b5ccf320"
+    },
+    {
+      "path": "teleop_assist/model_bridge.py",
+      "sha256": "ec15f6d2e062eaeed3b5827248d336b56e88cd8e10bd8db3a14fe1baf8f47622"
+    },
+    {
+      "path": "teleop_assist/model_registry.py",
+      "sha256": "b935fd9ab23765df476ab9682bedd4fcebb95daab8d9b13ede2a267eb1fb4832"
+    },
+    {
+      "path": "teleop_assist/model_worker.py",
+      "sha256": "a4c8770d548b879575628e579b809600ec07602980a687f75f223a70f7734fa3"
+    },
+    {
+      "path": "teleop_assist/multiview_tracker.py",
+      "sha256": "d592c9130035a450719eec7761457f0f2cea81f3ee2db617f196a5c86691b174"
+    },
+    {
+      "path": "teleop_assist/perception.py",
+      "sha256": "a860033fac5d451c20546d9138263ebc88dfad4c6afaa4f9fb5653579fbee920"
+    },
+    {
+      "path": "teleop_assist/perception_runtime.py",
+      "sha256": "caa47c6c1733056c7e4492b0ebca75bd4f60dfa914e7c53f1ed4774cc6fde721"
+    },
+    {
+      "path": "teleop_assist/pipeline_workers.py",
+      "sha256": "eeccb4f7c96b780ccfa909330709176c27df3f767a92b896f83d6b262de00001"
+    },
+    {
+      "path": "teleop_assist/pose_bridge.py",
+      "sha256": "6f0df98e0c8702cf47414a06ca3fb134c122f2c4234e36876825f27fdcd052fb"
+    },
+    {
+      "path": "teleop_assist/pose_observability.py",
+      "sha256": "19d5fd9668c320e3ed0454bcb32948dbf9358391c62a1cf77e3169824a618794"
+    },
+    {
+      "path": "teleop_assist/pose_worker.py",
+      "sha256": "5d26c8eef0bbcdacff81a75aec33c88ce92365fab4d678cd478f7114b10ae335"
+    },
+    {
+      "path": "teleop_assist/predictive.py",
+      "sha256": "d8e86a83ff2add1a1fb2f0d1a194ffe1125338f9fb75e3f62232d40ce34334ee"
+    },
+    {
+      "path": "teleop_assist/recording.py",
+      "sha256": "6cfb5db6e83a6db6cae2792d10d68f3b2aaf6b098c979e0d6b1693032cd4219f"
+    },
+    {
+      "path": "teleop_assist/retained_reference.py",
+      "sha256": "4fc2d1cf77972a29f7d09cb6c3ce14c4c984dc082739591f0d0c4f0eac96bb0c"
+    },
+    {
+      "path": "teleop_assist/scene.py",
+      "sha256": "6bd8f2651ec8ba00921afc25f1cf7e04cce1bc0cb5a74c7a1ce52694af031a71"
+    },
+    {
+      "path": "teleop_assist/sensor_fusion.py",
+      "sha256": "46f8ad80b0d4ff2c8e84a4473342475e65efccaafdb54f05346bb2d99cc1b7e8"
+    },
+    {
+      "path": "teleop_assist/sensor_geometry.py",
+      "sha256": "2d886b83fff3129a8fb5a240ff6c9d8f7e60a67269cebaecc485e822cb734d1a"
+    },
+    {
+      "path": "teleop_assist/server.py",
+      "sha256": "02fd375a4d522f2e1f578fc8a530bff4d8168b2fb0dd18df94483b08acb4d48b"
+    },
+    {
+      "path": "teleop_assist/stack_evaluation.py",
+      "sha256": "bd5e7cb13ad05b612d9a44884862c4044d98411f140bad58fd3f855f0e6afdf9"
+    },
+    {
+      "path": "teleop_assist/static/app.mjs",
+      "sha256": "b1dc7872f1cb827b52ae18641983055fcfcd2730a9fc0b62f96e2724d3514ec3"
+    },
+    {
+      "path": "teleop_assist/static/display.mjs",
+      "sha256": "099ef4ed8697e78918d08fb4876a97b3620c50e562197480c8e3505bd259cf9b"
+    },
+    {
+      "path": "teleop_assist/static/gaze.mjs",
+      "sha256": "bb9afe8461aa346e16ba2a613239ab3e188e800ec8d1c549b795ef3a9a8f9380"
+    },
+    {
+      "path": "teleop_assist/static/geometry.mjs",
+      "sha256": "87e846abe784f9352d5ce9a1f3e2981de9759a03acdfc35df704ec3ad6d1f0ba"
+    },
+    {
+      "path": "teleop_assist/static/index.html",
+      "sha256": "efb7347d737041e11aa460f7ef03658d075e395a0a40730c1cb3f72b2e5c00cd"
+    },
+    {
+      "path": "teleop_assist/static/reference_teleop.mjs",
+      "sha256": "7603d3e23f83713c2f65d4a52f78d31a3e81670ae4e8acbb76dca96448ecf953"
+    },
+    {
+      "path": "teleop_assist/static/style.css",
+      "sha256": "ac70561f965aef63cd420df7ba98d15a865ae6bcba87bee4163c452342de5de8"
+    },
+    {
+      "path": "teleop_assist/static/tests/browser.test.cjs",
+      "sha256": "903b8e13f2efd9712b75801a141198e838e56058f189d0a0002d09492d414b9a"
+    },
+    {
+      "path": "teleop_assist/static/tests/display.test.mjs",
+      "sha256": "ec09c9c776943d1c636a2866bb2247065efccf61d3340cd4314f64911dd63d53"
+    },
+    {
+      "path": "teleop_assist/static/tests/generate_fixture.py",
+      "sha256": "5f32faf5ec70b89032e81631147a2d2ccecb21ac274ee1ac3a37f4ed0cd711df"
+    },
+    {
+      "path": "teleop_assist/static/tests/geometry.test.mjs",
+      "sha256": "2ebb0a33979022cb6c60f1c073b60644e820730eb39fb53c3874c5393d2b48aa"
+    },
+    {
+      "path": "teleop_assist/static/tests/live_browser.cjs",
+      "sha256": "082a8e10d96c35145ae45a9466b2ca106efb2fb2f9db3a44ad2e9acc1586a98a"
+    },
+    {
+      "path": "teleop_assist/static/tests/multirate_browser.cjs",
+      "sha256": "6b017e526551ecfa23099f95ae956497dc02a1c8c6881e73381ad66277b5f70b"
+    },
+    {
+      "path": "teleop_assist/static/vendor/THREE-LICENSE.txt",
+      "sha256": "bfe119ea4fd413f5f7ca3fcd63adb0c4a073ed39daa2fe7d3e6b769e21272601"
+    },
+    {
+      "path": "teleop_assist/static/vendor/three.core.min.js",
+      "sha256": "61ba0df005b05991361d040d8ff670e1aadfd0ce7aeebd1fdb0725957a8957de"
+    },
+    {
+      "path": "teleop_assist/static/vendor/three.module.min.js",
+      "sha256": "e2b5ee6bccd38fd6d8a2428546b83c5f2426d84b152ef82be8055556e3b40eb6"
+    },
+    {
+      "path": "teleop_assist/static/xr_session.mjs",
+      "sha256": "91c7cb580b1abb8a63d1280b7adf45c14c1c46ee7bef998c27ef007f69960c1f"
+    },
+    {
+      "path": "teleop_assist/surface_tracking.py",
+      "sha256": "d2caab8add542377106868fd0254fce0342a592a7c9e2b919c383d6f10b241ce"
+    },
+    {
+      "path": "teleop_assist/task_profiles.py",
+      "sha256": "14511e8cd0fcca6a1cfe64148376a51c2d77c34599183d29b24e67098500a341"
+    },
+    {
+      "path": "teleop_assist/unitree_arm_ik.py",
+      "sha256": "3327a5943ac265b9be64f8a4551ba02eebe888d91509953d0bb8162aea35c460"
+    },
+    {
+      "path": "teleop_assist/unitree_ik_worker.py",
+      "sha256": "fc3aa8b41aad1bae1b2a84c18f67944aca03f155943ee5f37959439886bced0b"
+    },
+    {
+      "path": "teleop_assist/vision_grasp_evaluation.py",
+      "sha256": "9b80a4e11d23b0a3fa2d8f2f910fadfe1d47c8faa88aae4823a5046d686c458f"
+    },
+    {
+      "path": "teleop_assist/visual_tracker.py",
+      "sha256": "2caa7c07585e7331e70510bf60f06a08964ffbb5076912c5b3cebf5d13daf351"
+    },
+    {
+      "path": "tests/test_arm_benchmark.py",
+      "sha256": "49af543ed5d93d5a44b94aa1564b5eb12bebe63793f017fb35ccc7c61a4e1091"
+    },
+    {
+      "path": "tests/test_assist_contact.py",
+      "sha256": "316f3467b5df63e9aba9fe7ae5d672d74289a975d96d4ef2de0f8e2583dacd68"
+    },
+    {
+      "path": "tests/test_assist_core.py",
+      "sha256": "fac2b95861395b945caa1fc7cb04100fbc9e4813367f7ed1fe90774773c286ab"
+    },
+    {
+      "path": "tests/test_assist_gaze_ray.py",
+      "sha256": "57aaf1cf2c788ae922f10ab80babd4e5c4709d82fa860d1ec49b413b6559fe10"
+    },
+    {
+      "path": "tests/test_assist_intent.py",
+      "sha256": "bf93b798ee97ea7ca162866e04fa3d8a2515f7dab755b8623729ffc78bf12682"
+    },
+    {
+      "path": "tests/test_assist_launcher.py",
+      "sha256": "d12fdef5fae54c6da0203876768cf1af2ecaca3d08268128add9053b0893a3ee"
+    },
+    {
+      "path": "tests/test_assist_perception.py",
+      "sha256": "987c433cb86e511a27100c1be33aef15a0c19ddd27d3cdf0c9193663796c135b"
+    },
+    {
+      "path": "tests/test_assist_pose.py",
+      "sha256": "fdb7a8bbe72faf0e839ce19c5a62e119bce7148ad8c5b4ec127ac87a15b4d4bd"
+    },
+    {
+      "path": "tests/test_assist_recording.py",
+      "sha256": "c61d4473cf45cca02859f90250ee3d6f39aa222b189c1df20405280ce18c6594"
+    },
+    {
+      "path": "tests/test_assist_server.py",
+      "sha256": "534d48ee52d4cea8219a2ab1fb8fd48c3568d37afd2bfc7b48ee183f9d21778b"
+    },
+    {
+      "path": "tests/test_backend_reference_queue.py",
+      "sha256": "a2be7887c2201a90e6a9eb56503bdb7b3b4e0e9e2cca2fd8f78ad15789cf8253"
+    },
+    {
+      "path": "tests/test_cad_identity.py",
+      "sha256": "553f4726fe6d3566cb6019c19e31215e231c5bf83a2b25143c9f6eeabbf6cf03"
+    },
+    {
+      "path": "tests/test_cad_overlay.py",
+      "sha256": "fa4fd5636aff24c8b117d627f42dc8f44df599cba09ac9ac93f653a67dd9f12e"
+    },
+    {
+      "path": "tests/test_cad_surface.py",
+      "sha256": "5286a0b9328ad06dba69b7aea3af26e920b52876e2a6c314c1f2bed07dff25da"
+    },
+    {
+      "path": "tests/test_check_ready.py",
+      "sha256": "6b9c826206714b490d40c381bd72193183595709f2e12bdd5c8d3a4aab922a85"
+    },
+    {
+      "path": "tests/test_control_ownership.py",
+      "sha256": "b420ad10c213eee765646149b2cd3a7f3e0d6e435f7506a9a24bf020df18786a"
+    },
+    {
+      "path": "tests/test_copilot_arm_collision.py",
+      "sha256": "462f4ad727c6b20abecfa81f66c297040b0a863e94d6df3233ebf74df388803d"
+    },
+    {
+      "path": "tests/test_copilot_arm_collision_memo.py",
+      "sha256": "b20d7054f0d9b0ad3abcc4da8338118cd7f7eea15e3e8453764d81fb7b0f2375"
+    },
+    {
+      "path": "tests/test_copilot_asset_paths.py",
+      "sha256": "9df5f78e9650ac47b67ddbc174e392e852300ac2751382cb327c99ca39b6c40f"
+    },
+    {
+      "path": "tests/test_copilot_audit_trace.py",
+      "sha256": "854c1d290a87cd16f1aea83f8aff1d8fd3e957a0820718e4bead60f1fd6e4b22"
+    },
+    {
+      "path": "tests/test_copilot_camera_frames.py",
+      "sha256": "e74eb8eab779d2113d34f998a9a6186a48c745d7216c483a4e7d1b1f3b59ecd7"
+    },
+    {
+      "path": "tests/test_copilot_camera_publisher.py",
+      "sha256": "0cb8bacae376962f543b86c316d2ccb281c4151a68eb41011a11d7ff368a6e8b"
+    },
+    {
+      "path": "tests/test_copilot_cleanup_review.py",
+      "sha256": "0f3038f0431c326e8611ed24940ae080f77e6a897beabb8c432c036d131b6fd4"
+    },
+    {
+      "path": "tests/test_copilot_collision.py",
+      "sha256": "025ab6f97a55c2113057b475d78e66f8e56e445f5173d577e8a4c54de6c95d9c"
+    },
+    {
+      "path": "tests/test_copilot_controller.py",
+      "sha256": "a99a57807a14e6c075cae8f41bdd26384b60832c58b5d8967576587105f64986"
+    },
+    {
+      "path": "tests/test_copilot_cooperative_shutdown.py",
+      "sha256": "662156c62b57ed5607de5a7364bc6726efddc9feb4ff04c2802eb7f412705484"
+    },
+    {
+      "path": "tests/test_copilot_dashboard.py",
+      "sha256": "397c698a1db8bd32994831f724c537081fcbc13fb8f0a2727d9ccf746ec6d074"
+    },
+    {
+      "path": "tests/test_copilot_depth_cleanup.py",
+      "sha256": "d5b45c0ca47e9168a0adb210fcb5d0a91cf8428a41705d9e8d17895679a101ec"
+    },
+    {
+      "path": "tests/test_copilot_descriptor.py",
+      "sha256": "3ee8d9e2c43d9edab1c06d7b993b2612a51a8c2408af8646b4abf65ab597f8e0"
+    },
+    {
+      "path": "tests/test_copilot_endpoint_ik.py",
+      "sha256": "fd8af7ffc6c240fea5202bb1cfe942270d03fa02c0977cb330e3021c028a2192"
+    },
+    {
+      "path": "tests/test_copilot_execution_budget.py",
+      "sha256": "c68d2e07d36ff125167049f867d7a55cc021b6c4b983f6fb316aac5b18168f3e"
+    },
+    {
+      "path": "tests/test_copilot_expired_guard_evidence.py",
+      "sha256": "41b5e6785c2597bfb6e99d3e297e7719a4d405e24b6297c98b5b9a3ff0d378bb"
+    },
+    {
+      "path": "tests/test_copilot_frame_sync.py",
+      "sha256": "101591ac7745f1e8f07c6965066379c36e15c9a15dab61e7199d1cbf0d5bfd85"
+    },
+    {
+      "path": "tests/test_copilot_full_ik.py",
+      "sha256": "edf79c0fe8406890de3c59e9b144b66adb1f67b5d8ce83a4aaa5fbbce6f153b3"
+    },
+    {
+      "path": "tests/test_copilot_full_ik_prototype.py",
+      "sha256": "204854fcc6b44bee8ad3dba9ee059449c40f7ccc8bed63ca4ed18f6fb941d1c1"
+    },
+    {
+      "path": "tests/test_copilot_guard.py",
+      "sha256": "69b56c06070b8c965b62d0ca880ee45f69d0d1bd2657d2d89c20cb7ac7b123ba"
+    },
+    {
+      "path": "tests/test_copilot_guard_wire.py",
+      "sha256": "fc9d128bb3b9467bcfcb7c1b002eae6346e7422a9c764ea9a3bdaa9a6c1a40ac"
+    },
+    {
+      "path": "tests/test_copilot_input_trace.py",
+      "sha256": "80d49669048b7457da98dfdcc2918fd0e9ed42bac7e56a871f9f2c78c2f9a45e"
+    },
+    {
+      "path": "tests/test_copilot_ipc.py",
+      "sha256": "a84e645e015bc0b5336cf20437cdb5aa92780bd76b6a0942758f1bb45fc13c80"
+    },
+    {
+      "path": "tests/test_copilot_kinematics.py",
+      "sha256": "035d9973c2adc93ced857dcd6be33ed69f78bfbd41e76912bc93b027d7c40c74"
+    },
+    {
+      "path": "tests/test_copilot_late_ui_heartbeat.py",
+      "sha256": "51c981480d3b0bbf4a356b48c6315a2a52822dcdf1900bcf2388c549ca8350ad"
+    },
+    {
+      "path": "tests/test_copilot_live_sim_proposals.py",
+      "sha256": "6df7be7c79dc995208f936c432e6bf341aa9ff7f7fb10e8a7b52d420902318f8"
+    },
+    {
+      "path": "tests/test_copilot_manual_fingers.py",
+      "sha256": "b987f56ce916d80684c8919cd1b278ae51371e5c536491edd5fc6c14129abada"
+    },
+    {
+      "path": "tests/test_copilot_manual_grasp_assist.py",
+      "sha256": "bf216d1da8ae1da256b2439ff0ab0fc9067bfa07c887665d1cf331937755bfff"
+    },
+    {
+      "path": "tests/test_copilot_manual_sim.py",
+      "sha256": "2f872e3bb96994de2ec85859b2d2d16be227af6ee410451d113e47b200b48583"
+    },
+    {
+      "path": "tests/test_copilot_motion_shutdown.py",
+      "sha256": "af9f26dbaa768dcf3bfa5969ab53a06c59be6cce5fa8b655891031e9e5c1a2e0"
+    },
+    {
+      "path": "tests/test_copilot_neutral_reconnect_ack.py",
+      "sha256": "924b29de6e94fe8ac3be9816ca016c54746c0f8678624b045270766fc5366d20"
+    },
+    {
+      "path": "tests/test_copilot_original_sim_snapshot.py",
+      "sha256": "02cf0d836ddbed8993b79c1c5155b975a1603ecc3d6321d05b2a7212a1f0b964"
+    },
+    {
+      "path": "tests/test_copilot_original_xr_send.py",
+      "sha256": "604de04b6febf58427166a34d1db519ac3f7bb1956a8ea07cf6edbe42ed06607"
+    },
+    {
+      "path": "tests/test_copilot_original_xr_sender.py",
+      "sha256": "377a04feaf68def4515841fb86bcad844f70e7a924cd7d42af5015f04c8b38cc"
+    },
+    {
+      "path": "tests/test_copilot_package.py",
+      "sha256": "f8be9ad85b2a3e97cab545a90c95511916d287f40a51d4954e0744e282770675"
+    },
+    {
+      "path": "tests/test_copilot_perception_rebase.py",
+      "sha256": "91c4a5db17e446dc1ae22dcce214f02def0b66e61b517243f9ab2e6d59cb8974"
+    },
+    {
+      "path": "tests/test_copilot_physx_source_evidence.py",
+      "sha256": "968a6194247155760a5ca12492f11849912bbb322bdccdbe5f2a6f922b49cec7"
+    },
+    {
+      "path": "tests/test_copilot_pose_batch.py",
+      "sha256": "ebf3d1b0a4fb10a7a219cc56248ce397d923f27e588320ed729491a7606a6d5c"
+    },
+    {
+      "path": "tests/test_copilot_preview.py",
+      "sha256": "e45edeb67afa994b8bc097c38a005e4064ff83427c25937c41c0b65aa8b875fd"
+    },
+    {
+      "path": "tests/test_copilot_preview_selection.py",
+      "sha256": "2f3d9801b011c88b6e7466d060cbcd5b508559821fff5054fa01f7fdad668354"
+    },
+    {
+      "path": "tests/test_copilot_process.py",
+      "sha256": "3ce8d9aa995b3f7c4ebe14f4c717d8fe10268a75f93e41055d0c78b74ee4a189"
+    },
+    {
+      "path": "tests/test_copilot_receipt_replan.py",
+      "sha256": "f67cc65f27f7a4a16244bd85b98d04b73cc51c154ba70255fb1e84a7754e5904"
+    },
+    {
+      "path": "tests/test_copilot_render_sync.py",
+      "sha256": "c3ad4a91818beed17ebf0ac401fe66dcf1c19f46884a15ca9c3f2db4263b9c75"
+    },
+    {
+      "path": "tests/test_copilot_rigid_absolute_tolerance.py",
+      "sha256": "b8c6e11a788c33a0c99fc32589dbf7074c05ba309d2cd589cdcff85b86c2afb2"
+    },
+    {
+      "path": "tests/test_copilot_runner.py",
+      "sha256": "8c6659ec8742fb48ef4111be676d8cc2452b82a8bfadd0e94b7d020a9b7b73d2"
+    },
+    {
+      "path": "tests/test_copilot_scene_snapshot.py",
+      "sha256": "754be65322db5957ca7f38e30be49b6470b895fff8d2de27f3a8ca2ea97a3431"
+    },
+    {
+      "path": "tests/test_copilot_selected_failure_capture.py",
+      "sha256": "03c3a393ae25de8b640ad8f6cba738f85ca75252150092fdce06aed8fb894faa"
+    },
+    {
+      "path": "tests/test_copilot_selected_feature_capture.py",
+      "sha256": "5ae11a783a7739b5bde3d9847690c75cd797ca482b4047dbcba644103820e82b"
+    },
+    {
+      "path": "tests/test_copilot_service.py",
+      "sha256": "283ae036183580da1397728ee35cd1bcdd854685cbd7f8127ffeecd450f58f38"
+    },
+    {
+      "path": "tests/test_copilot_service_paths.py",
+      "sha256": "5a9e181a1984742cc0bc3275166421c796a4716cb095c1b28bcb0bfe2157747f"
+    },
+    {
+      "path": "tests/test_copilot_setup.py",
+      "sha256": "fd904820c0772af00a97cb07b6eac0f47b1a834c2cba7fcf84ec65c5aeee9052"
+    },
+    {
+      "path": "tests/test_copilot_sim_acceptance.py",
+      "sha256": "de5cd5cf8e11e61df41749f793765b6d14db35e4a5223031194a5e4779844f83"
+    },
+    {
+      "path": "tests/test_copilot_sim_actor.py",
+      "sha256": "f8dab3d974f49043c43edd8d66f8e6317f4eb488d3fca374e72d5d34c57fa9f3"
+    },
+    {
+      "path": "tests/test_copilot_sim_control.py",
+      "sha256": "587c673fabc17cc1a1f817e8447bfa4387f771dab94c996ad43208a6c0aa40af"
+    },
+    {
+      "path": "tests/test_copilot_sim_preview.py",
+      "sha256": "dc0dc3bcd3571e35fdd296cc3e8ddb895881a5e890348552d5305d854e5f0a70"
+    },
+    {
+      "path": "tests/test_copilot_sim_receipt.py",
+      "sha256": "55ef4845b90a9a828e2dab2b62adaf80e35a52d94035eb3b1810ca8759f01b3d"
+    },
+    {
+      "path": "tests/test_copilot_sim_snapshot.py",
+      "sha256": "2c1a6904786267efec4da53111639d45fbedd0b5094c5ff78e9dadf8f222df3f"
+    },
+    {
+      "path": "tests/test_copilot_sim_target_feed.py",
+      "sha256": "908e16c41a9bd51139913118a9de76e79c78500637dc6704de8077323ff60a62"
+    },
+    {
+      "path": "tests/test_copilot_stationarity.py",
+      "sha256": "56811f7a45f316db35b3da82a9234f276e526954e219bade6a03cdaff8899b8f"
+    },
+    {
+      "path": "tests/test_copilot_target_recheck_fastpath.py",
+      "sha256": "d3ef6f4bcb12712fd0e50937013a4ab5f560bb367010f0a008e2d47d94091513"
+    },
+    {
+      "path": "tests/test_copilot_ui_action_transition.py",
+      "sha256": "3494792af7079b14a8da501dc3750126a6f19c338ee7665b628892b12703a965"
+    },
+    {
+      "path": "tests/test_copilot_unitree_codec.py",
+      "sha256": "c65b20c234979b62ce8d2092e048799d47947d41f8f40f5c0d0f282eaea6efbe"
+    },
+    {
+      "path": "tests/test_copilot_vr_buttons.py",
+      "sha256": "7b9898ddb97805007b9cca075d599d4423c8d1a00a6264b0d3b0c38bbdad49ff"
+    },
+    {
+      "path": "tests/test_copilot_vr_reconnect.py",
+      "sha256": "07de3906429664b1c79fc9149e566e9da8301332169b553bac15e4dcf11ea2e6"
+    },
+    {
+      "path": "tests/test_copilot_vr_startup_bridge.py",
+      "sha256": "aee87c8c61f5ed23274795f33650e0518e4616d51729a512404d1bfad3ca8a5c"
+    },
+    {
+      "path": "tests/test_copilot_vr_time_provenance.py",
+      "sha256": "89d9bee612b5ffedc2cea3e952cbeaa8804ea4e9ed81c80af1da25d04af56ea0"
+    },
+    {
+      "path": "tests/test_copilot_xr_adapter.py",
+      "sha256": "b7505c00f8124003e42eacb32367c06cab597b7d46771a867e748c4c7465f404"
+    },
+    {
+      "path": "tests/test_copilot_xr_camera.py",
+      "sha256": "d80a7a7bf44cda4bfbda28c672b4f8b44db0be3d1a31e6d5398fa98ce7aa351b"
+    },
+    {
+      "path": "tests/test_copilot_xr_camera_integration.py",
+      "sha256": "5b668ba0a72533758d74e3625045833a6ec0e9e6c15b6758e720eec4219af987"
+    },
+    {
+      "path": "tests/test_copilot_xr_grasp_overlay.py",
+      "sha256": "87661c19b80f0e21f0dd930f41adf886a3487c61047bcc190de9758fe36819cd"
+    },
+    {
+      "path": "tests/test_copilot_xr_instrumentation.py",
+      "sha256": "c5cd9226fcc24491df1f6bac7ad58423032d20b099e87c1947113ba7df89aec7"
+    },
+    {
+      "path": "tests/test_copilot_xr_launcher.py",
+      "sha256": "5e7f2767fcf1a9740edf7982d44d98f1842eed92d5a7e07c9ae42dd465d61f4b"
+    },
+    {
+      "path": "tests/test_copilot_xr_panels.py",
+      "sha256": "70f45685cc6ebfa421a2ff68e4c6ce5479b6917673b040e60934269d726cf407"
+    },
+    {
+      "path": "tests/test_copilot_xr_public_routes.py",
+      "sha256": "b5683590307ebe76c50a0a6483f63027ce21d02c38c1cd029f6e18ca16ecd727"
+    },
+    {
+      "path": "tests/test_copilot_xr_send.py",
+      "sha256": "fdb66d94610127a31ef8979af569599bb1818d40689dd4c96bc92dc4b8747059"
+    },
+    {
+      "path": "tests/test_copilot_xr_send_crc.py",
+      "sha256": "b233cf2599f3a3ab3e498ddede75d2052bdc3dba0c7e95b2270fa8e1fed0eda9"
+    },
+    {
+      "path": "tests/test_copilot_xr_source.py",
+      "sha256": "abdbc7410b09cde2e289a2e78d738b6f06dc893d8a147c651166d91960671e4e"
+    },
+    {
+      "path": "tests/test_evaluate_handle_pose_simclock.py",
+      "sha256": "fc46311b2201750773c4e5570b39a2fd96bee8e7aabcb6625316612c16e92260"
+    },
+    {
+      "path": "tests/test_evaluation_contact_pairs.py",
+      "sha256": "9b381b31051dabd3d4b902f07b7d3893aa9cfce9a91a4b943b6fe66573fe4c67"
+    },
+    {
+      "path": "tests/test_foundation_pose_contract.py",
+      "sha256": "76e607b6e2b248221c3eb2013d72a64ff2e3943cc1819efc65efbcd141347011"
+    },
+    {
+      "path": "tests/test_invalid_model_pose.py",
+      "sha256": "9c2e1dfbfa366f10112bfa10549340becb10e8d4906e75c9a722b4c2bc9c6960"
+    },
+    {
+      "path": "tests/test_learned_perception.py",
+      "sha256": "3f976e6a47bfdeeff528cf8dc1f82a24dc0e98a888f58fd0d9b946632daf0b56"
+    },
+    {
+      "path": "tests/test_manual_pose_dropout.py",
+      "sha256": "97a3b334709fd4de5c2b1bd54799fd945acb60049ac7aa9273dd053884695a42"
+    },
+    {
+      "path": "tests/test_manual_release_evaluation.py",
+      "sha256": "6d85ece0ea578f06a894d52bd4b3db9bd2f92358cf4f4e2d03d8673fcd5f3e4c"
+    },
+    {
+      "path": "tests/test_multicamera_server.py",
+      "sha256": "6be02832468321b7a32fa53a378eecc9030a68be8bc5cd36e3fb40f9d2735c14"
+    },
+    {
+      "path": "tests/test_multiview_tracker.py",
+      "sha256": "6f32861353929af81e45b7cfc7379fc848c7055caae1d1fa6233bd4505df25f9"
+    },
+    {
+      "path": "tests/test_perception_runtime_multiview.py",
+      "sha256": "cbdbef24baa4eb1ac068a8b5762e0e548de5b9b4f1426a702c8eeea89a5c6826"
+    },
+    {
+      "path": "tests/test_pipeline_workers.py",
+      "sha256": "2ae9a616b66d5ff6a82db83d47e95af726f0f5b422c5687f149251e741686567"
+    },
+    {
+      "path": "tests/test_pose_observability.py",
+      "sha256": "c127590849439851626a3fcc60603003a6b9f1480a2a01ac39dd44091b3c5c54"
+    },
+    {
+      "path": "tests/test_pose_prefetch.py",
+      "sha256": "0ac87dac3fea1a6f48b13fbcb5aebdb470f2624830b45eb6bd18934aa55890da"
+    },
+    {
+      "path": "tests/test_predictive_actions.py",
+      "sha256": "7c7a2f4dcaeb29494adb8b306bef94db2b69feaa68bee64c110b776d841d1306"
+    },
+    {
+      "path": "tests/test_reference_teleop.mjs",
+      "sha256": "b5cb9b870654c20e4ceb39b18530c0a52454c0cf5f747881613fb6319a28aacb"
+    },
+    {
+      "path": "tests/test_replay_timeline.py",
+      "sha256": "d26d7e146f55eeedae5fb960fa4bb5e86e5dea20be06fcf387ec4a93bfb31c4c"
+    },
+    {
+      "path": "tests/test_retained_reference.py",
+      "sha256": "3bb99ee5386b61dfe019d657494201f55541b2b2a35521853597fb38c9fff740"
+    },
+    {
+      "path": "tests/test_selected_surface_primary.py",
+      "sha256": "8013ebd8a9f2b4594130e31b35ac095306e00a3db73bc894b57742095eb2e7b3"
+    },
+    {
+      "path": "tests/test_sensor_fusion.py",
+      "sha256": "f1c11b7a6f29dd883cf4a11b59502babbd42cdf105d578be55813fba766e62d1"
+    },
+    {
+      "path": "tests/test_sensor_geometry.py",
+      "sha256": "be9bf9e12c08de973c977a2ff4cfbe53c0e5a84050278b1e8cf62478e254ed87"
+    },
+    {
+      "path": "tests/test_stack_evaluation.py",
+      "sha256": "49a4f200b1dcd35b91765bf6839cfcffd32733b4e4d7f1a933d2b767af952415"
+    },
+    {
+      "path": "tests/test_surface_tracking.py",
+      "sha256": "955aa39c78fe1806fd11bdf3d9066cfd52d17243f1c6f579a69fd0d42231abde"
+    },
+    {
+      "path": "tests/test_task_profiles_cad.py",
+      "sha256": "0a6c3b235e7236dd211911fee77020cca1f8f73d63de49df8f5a16f4c4ebd7cc"
+    },
+    {
+      "path": "tests/test_unitree_arm_ik.py",
+      "sha256": "6a99017f99b8e5f7230f430dbd0e63cce77fa93e58b6251245e69ae0ff5d9160"
+    },
+    {
+      "path": "tests/test_validate_stack_launch.py",
+      "sha256": "0a02cf917d5ccb363a99e6bfe267ec6baee4b6f72be35c11cacf725a3557b9e1"
+    },
+    {
+      "path": "tests/test_vision_grasp_evaluation.py",
+      "sha256": "6178be7158bd4a297a76840e6de7064d698cc855df2959913e6ff1a93ef538c0"
+    },
+    {
+      "path": "tests/test_vision_grasp_v2_evidence.py",
+      "sha256": "09f1c2fa12aeb48060b81856d47cf0cdc05a6c400041e4d69ce07db28c57df62"
+    },
+    {
+      "path": "tests/test_visual_tracker.py",
+      "sha256": "e74eb95797fd602d03591c6cbed3d7228f71913a808bb91af6584eadc4d0f2c5"
+    },
+    {
+      "path": "tests/test_visual_tracker_flow_surface.py",
+      "sha256": "e39a2702808298fe1b670c642a5d5e4be3c2edfe094c1db8b2d302cccc9f21ba"
+    },
+    {
+      "path": "tests/test_visual_tracker_semantic_time.py",
+      "sha256": "5bb78735965df89a8aefbfed75c204dcf3f5db3e7ad3e7c7040591d08965de6e"
+    },
+    {
+      "path": "tests/test_visual_tracker_surface_integration.py",
+      "sha256": "06dfc8d067e834dfba1eb6f368db534d55553b27476abf48effa3ed54499ca21"
+    },
+    {
+      "path": "tests/test_xr_session.mjs",
+      "sha256": "8e6a8417e28bb01514113f87b6e93ca77db378824bb08f981e33ffcd053db975"
+    },
+    {
+      "path": "tools/analyze_pose_timing.py",
+      "sha256": "9a9d568b46c33e5a194d5d8c7f1c99157559201d094747dfaa6fb352f7a8713e"
+    },
+    {
+      "path": "tools/assist_gaze_demo.py",
+      "sha256": "cff4658e1a22c9810312c466eab3ec216cc403176a713bd0efbbc061ee54b1f4"
+    },
+    {
+      "path": "tools/assist_sim.py",
+      "sha256": "2638613aebb12553e819f88f722ccd21b22b978382fd045f59ce7a4fe913979b"
+    },
+    {
+      "path": "tools/assist_tls.py",
+      "sha256": "8320dd1a4a42b9c95024bd791aa367c3ac0d2f1a89e4dd5d931ecc8f3495e50d"
+    },
+    {
+      "path": "tools/audit_wrist_coverage.py",
+      "sha256": "bca5e68fb1ea53710b374a95a3a4f2f46ee14e39528fc38af6d60ca5ec9a83a2"
+    },
+    {
+      "path": "tools/benchmark_arm_control.py",
+      "sha256": "bb77381ed90d3f81bb69210a99e9a47f4926623fd3a4f76c37cea42cbb6726c5"
+    },
+    {
+      "path": "tools/benchmark_cad_identity.py",
+      "sha256": "d4971fcdadc552dc3594c1672dc26d88d981de1c1db1b247f4271aff205bea2f"
+    },
+    {
+      "path": "tools/benchmark_frame_publication.py",
+      "sha256": "d7476b207a25f52e3cf9525ea25bbbf670170b1e2883821657b51ce4ca28eb1f"
+    },
+    {
+      "path": "tools/check_ready.py",
+      "sha256": "213289d85b37dc5e35bc43d7076a817fa59621b72ade1f16552ef35fefe949a8"
+    },
+    {
+      "path": "tools/copilot/analyze_capture.py",
+      "sha256": "0d6d5d0065367f94d95fcfe7161ab29fd31ba3fc5281952c42342aaf69653d6e"
+    },
+    {
+      "path": "tools/copilot/audit_original_xr_send.py",
+      "sha256": "4df897e2bc2c9a7a3aa56185c01971982e428b4a6afb2dd9edbd7cb110765373"
+    },
+    {
+      "path": "tools/copilot/build_dex3_descriptor.py",
+      "sha256": "01c4bb15a14f22fcb1c5995448ea1a91fa8d0183c985280f8fb81983282d1c5d"
+    },
+    {
+      "path": "tools/copilot/capture_unitree_scene.py",
+      "sha256": "d2a14c3fbc42f908e5693c5125a9f0a3fc954dc76d737146e133bc117db4c105"
+    },
+    {
+      "path": "tools/copilot/check_sim_run.py",
+      "sha256": "a320b48cd523cdabc76400c004db563905014c51603b252c74f1677db1c93c2a"
+    },
+    {
+      "path": "tools/copilot/doctor.py",
+      "sha256": "920c452845c0244925f7b5d1a2078b7e34f7a82d9bb94a72ee95864b506e033d"
+    },
+    {
+      "path": "tools/copilot/extract_wrist_camera_proxies.py",
+      "sha256": "47b192cb0d9de181f267abf428c9ec568a3d7cf28f073978db23db8fa62a667b"
+    },
+    {
+      "path": "tools/copilot/graspgenx_constraints.txt",
+      "sha256": "8a0538106360d148814de8902d98a8c87cf63fd6d709d4ff0d271a6c82622e8e"
+    },
+    {
+      "path": "tools/copilot/infer_recording.py",
+      "sha256": "0d5bd87da54a6ae5b41c1646e7f42d5ce4d98e3f5d1e343664ade38f6e9ada14"
+    },
+    {
+      "path": "tools/copilot/instrument_xr.py",
+      "sha256": "a25bb1a516b6edb6038d99976bddf1fee48a351e30d45badccbd6788cd2a18fb"
+    },
+    {
+      "path": "tools/copilot/launch_sim_xr.py",
+      "sha256": "3f9c4e473908ab41e1341d6e9a833b92902a20880ed98aec8eccd35791b45a04"
+    },
+    {
+      "path": "tools/copilot/launch_xr.py",
+      "sha256": "abb1786883d5fd294d7b32fd8d44fb4958419fa2034307665b630d596392dc88"
+    },
+    {
+      "path": "tools/copilot/manual_sim_runtime.py",
+      "sha256": "35358f9ecca8c9a8ee2937b4e1ba71612b1ada0c9729f5ca6ff44352855393ce"
+    },
+    {
+      "path": "tools/copilot/motion_worker.py",
+      "sha256": "9bb903f408e515bd57bb96e0d6af980d7777aae3cd86b23920d2da4727a2d7e7"
+    },
+    {
+      "path": "tools/copilot/package_release.py",
+      "sha256": "9179c0e8641f76f20501df729b478caad7b80cf4e4fbd07eca5b38560c238d04"
+    },
+    {
+      "path": "tools/copilot/plot_sim_run.py",
+      "sha256": "f6b570091961313972f7658c70ed5e9d0f764bea835b7bd28fafaea5b13e74ab"
+    },
+    {
+      "path": "tools/copilot/preview_worker.py",
+      "sha256": "6da2b6e5aaf45f83668a9648e47740bf0b9c84c4a5db1912029c87019eac1843"
+    },
+    {
+      "path": "tools/copilot/probe_bench_cameras.py",
+      "sha256": "c31b4038dc6ed687a42be389c294d02d30609912676598609a5468f334b26ae0"
+    },
+    {
+      "path": "tools/copilot/probe_camera_motion.py",
+      "sha256": "c1b6dbeaa6250c43e3f26162c283c5483c6f4e063dddc9247bb110cf741af480"
+    },
+    {
+      "path": "tools/copilot/probe_endpoint_ik.py",
+      "sha256": "fb50e8d8215af3da65f9ed42c96ec9c2034e338a4a80d4dbb1c97945ef02046c"
+    },
+    {
+      "path": "tools/copilot/probe_xr_send.py",
+      "sha256": "dc65132e76ddbebd81be967f220382ec6aed607682ae93789a29a9579dbd14f1"
+    },
+    {
+      "path": "tools/copilot/prototype_full_ik.py",
+      "sha256": "3ba05c42cd452fb8f633d92c1e3bbfdf30c4ae88bbe46e23ca396d91e57b2a66"
+    },
+    {
+      "path": "tools/copilot/rollout_orientation.py",
+      "sha256": "a1ef02c0a46fec00368a57337766289924d93956d944f929c5798e6e61b14019"
+    },
+    {
+      "path": "tools/copilot/serve.py",
+      "sha256": "cb86ea228b99e2bf3dd1772e90f300c2c6994ced9b53aa0f0becf735b6c725ba"
+    },
+    {
+      "path": "tools/copilot/setup.py",
+      "sha256": "b23e89d3f9454d25d026a51b46fa4ea4216d4db86fb8ae7f066c6a12026c69d4"
+    },
+    {
+      "path": "tools/copilot/sim_runtime.py",
+      "sha256": "4506b9925f50cf8c99987312d22760a291107aaaa685cd5d4b572f2f80ee9160"
+    },
+    {
+      "path": "tools/copilot/sources.lock.json",
+      "sha256": "e81768df89786822d921904beaabd4ff745b318d700befa78de2f560089eaac2"
+    },
+    {
+      "path": "tools/copilot/validate_arm_collision.py",
+      "sha256": "9b0550b57abafc06f7a73b9a9d81c8e4a6cea4d781c7028cd5b2a26ecfb76b54"
+    },
+    {
+      "path": "tools/copilot/validate_candidates.py",
+      "sha256": "7aa5ae859ca05f040cd6f46d994a0ed7b3394ce855a5397a5ea23c0455bdf485"
+    },
+    {
+      "path": "tools/copilot/xr_source.py",
+      "sha256": "4e247e9be8ba33df89a30354098790909a379253b6eef8cb18128df5946fff56"
+    },
+    {
+      "path": "tools/evaluate_assist_recording.py",
+      "sha256": "a29ff2d69f7e42d77ebdba109e25211d7fd6e16d3feb134cc24b07de4769bca9"
+    },
+    {
+      "path": "tools/evaluate_handle_pose.py",
+      "sha256": "48dc9020a39d305a46635e715f4b70f9e92dd5296f672d8f14d39d3fc8159034"
+    },
+    {
+      "path": "tools/probe_arm_reference_queue.py",
+      "sha256": "21d55811bf14fac91c944cb923cef320bbf7efe3fc2dbe1a7d930a4bb0ff4e50"
+    },
+    {
+      "path": "tools/probe_assist_contact.py",
+      "sha256": "8b3a40f56400ea824f046955a11f98c0fa1090f0b30e1acf0c5e9d5f9d781e4b"
+    },
+    {
+      "path": "tools/probe_assist_isaac.py",
+      "sha256": "073cb127183b5b8ba1b4c0891be7e7a4c0ae8de336c08e5d3a0ac3f329bb6518"
+    },
+    {
+      "path": "tools/probe_assist_pose.py",
+      "sha256": "3efb3dbd89477883be402fb15e83d5a1f2d6478fa975af1e2b7414c954ff510a"
+    },
+    {
+      "path": "tools/probe_cad_identity_reconciliation.py",
+      "sha256": "b492b987bea563da917a4f809552078dd08353afa8cc0408cbfa5a90008a4a8e"
+    },
+    {
+      "path": "tools/probe_cad_identity_recovery.py",
+      "sha256": "c5ad0c4726b0a277d06ef597f9df894d81d7272eec4253041650ab61c93b17e3"
+    },
+    {
+      "path": "tools/probe_cad_identity_replay.py",
+      "sha256": "e5293ae0d31e9604b2184800e3918dd5c353cf7b52c7aea3b20851c40aa5961f"
+    },
+    {
+      "path": "tools/probe_cad_mask_prior.py",
+      "sha256": "26e31124fec5cdaa20168d373d12c9ff01cbed2723aa3b85bde1e490a8f4d803"
+    },
+    {
+      "path": "tools/probe_confirmed_recovery.py",
+      "sha256": "b52a9ad226f9fdd3b1a695fb0f97791985a7535289b95e84fda8b2418e9a6640"
+    },
+    {
+      "path": "tools/probe_drawer_grasp.py",
+      "sha256": "b849127ca279d0eea0e2bf5add23dc480953e5df2597f67eef4c346319931228"
+    },
+    {
+      "path": "tools/probe_foundation_pose.py",
+      "sha256": "014b307c038452a2ed2e1476e54dc440b9aca686838c64119672a2ff78c8d762"
+    },
+    {
+      "path": "tools/probe_hand_target_contacts.py",
+      "sha256": "d8f01685005bf7a76d6ede7e91ca1e95d614d20db75529c891753f84f55ba261"
+    },
+    {
+      "path": "tools/probe_left_workspace_camera.py",
+      "sha256": "f4126ada3c8aa35b32a2eee6bdcbc565d6d87e45ac76eb4c049d409ca6fa4e05"
+    },
+    {
+      "path": "tools/probe_live_arm_control.py",
+      "sha256": "a4b8887349defdeb97969b193945c764ab7614cd8d7a99176888b3e424489c1a"
+    },
+    {
+      "path": "tools/probe_live_stream.py",
+      "sha256": "882a0bca3e94b79511b2398779cdc0f373fb151483efc179eae773035df817a3"
+    },
+    {
+      "path": "tools/probe_manual_release.py",
+      "sha256": "59d2a3520588ca2a4927674aec4f72796fad676c32c053c852e17e0e60a324be"
+    },
+    {
+      "path": "tools/probe_models.py",
+      "sha256": "3b4c90458abd9a53341caa3a73042dcf7456b36006ad98a94ab2cf292c69d4fe"
+    },
+    {
+      "path": "tools/probe_multisensor_scene.py",
+      "sha256": "c4401430c167105e994e4e544eeccde007593212300556e475b70ca852af3b3d"
+    },
+    {
+      "path": "tools/probe_perception_rebase.py",
+      "sha256": "edb057af38c69fefa307382c28624fcc1902acba119f562817f131f169a7b25f"
+    },
+    {
+      "path": "tools/probe_pose_latency.py",
+      "sha256": "4f071da0afeddb5e8a688b4b76bd85ae46e24b30b9954e61f0c28d7a8c5b8f08"
+    },
+    {
+      "path": "tools/probe_pose_observability.py",
+      "sha256": "07a62e156652efc7449f89efdab22867998e70690b118694998686bff8a9dc9f"
+    },
+    {
+      "path": "tools/probe_pose_visibility.py",
+      "sha256": "65512bdd5762801c9af5344c779e95d8ac8cf99ed3cf2e224c900971c67157c2"
+    },
+    {
+      "path": "tools/probe_recorded_multirate_ui.cjs",
+      "sha256": "551d4cce58b268b7224c0b2892eaf2c5731c61e38fa34e0cc476235a203f3cc3"
+    },
+    {
+      "path": "tools/probe_recorded_multirate_ui.py",
+      "sha256": "1e0e18b722a5690cfd3375a9dfbce2cffe1c309af69ffaa309b50844ef54a0ce"
+    },
+    {
+      "path": "tools/probe_repeated_holds.py",
+      "sha256": "2fb9624785b60675b5cf4297f852e1fe66d448648dd7801cd44a0dccf45cfcc2"
+    },
+    {
+      "path": "tools/probe_surface_normal_switch.py",
+      "sha256": "00f1a8eb6267e243544316c56835f33e4d1a29ad025c3eceb88edc4e348034b6"
+    },
+    {
+      "path": "tools/probe_wrist_pose_handoff.py",
+      "sha256": "9a0361ccf1b0c49447a323ad26b7040317bfee7610b93adbf3930c73c0a660e5"
+    },
+    {
+      "path": "tools/profile_cpu_tracking.py",
+      "sha256": "226f1ff99a28e7ba873818bd623fe50428a3964e40c156d165e6a478519dc85a"
+    },
+    {
+      "path": "tools/replay_assist.py",
+      "sha256": "4150385864e5178f78322e93b0f82c2a9b05d9e73f7b07eecbdfaecb3d7bb59b"
+    },
+    {
+      "path": "tools/setup_foundation_pose.py",
+      "sha256": "8e6e2feec7c81f19cb3e0a8068df7e7928202ea8f05faf1facd158c9c0f2645f"
+    },
+    {
+      "path": "tools/setup_headset_usb.py",
+      "sha256": "7175d31986784a4b1ff3fe54520462f19208c6a9108e3fa62c8f317298c808fd"
+    },
+    {
+      "path": "tools/setup_headset_wlan.py",
+      "sha256": "204a125d44b04e9dd88b00449e65c1b1cdb1fd83ec552b8a0d775460b60d0a57"
+    },
+    {
+      "path": "tools/setup_models.py",
+      "sha256": "6a0fdb5af8d5e7e3fb2a7cce477087f980ac9ddb2c009bc42af52248f4379378"
+    },
+    {
+      "path": "tools/setup_unitree_ik.py",
+      "sha256": "e6d1cb6a6cbaac28cd86b069a54deb1d26a6ceefb20c1771538ffa3390d37ea0"
+    },
+    {
+      "path": "tools/test_assist_frontend.cjs",
+      "sha256": "b200914931af4a3cff18eefb9a4dcc181a3c8ef78c97d3d46e14fdcf7e1f7a8a"
+    },
+    {
+      "path": "tools/test_assist_gaze_protocol.py",
+      "sha256": "bd3a816fae87fa7ac9e4aed77bdc139b629661a80457231c158a16f74d258412"
+    },
+    {
+      "path": "tools/test_assist_operator.cjs",
+      "sha256": "0aed78aa030b943f26262472826bb7d24dd4ac91fa3e861bcbc849c2e16c4a3d"
+    },
+    {
+      "path": "tools/test_assist_tls.py",
+      "sha256": "0e853321426c00a52daeb2b4e1590af120ae8cbe15296c6d3e3898c40239f1fd"
+    },
+    {
+      "path": "tools/test_headset_usb.py",
+      "sha256": "327fc8bf61960c50ad9da32a38b64047fda2311189b725d5fff369df28ebc803"
+    },
+    {
+      "path": "tools/test_headset_wlan.py",
+      "sha256": "49b347ed27aeb96c0d6fc6c66557fe3aba69119bfc08efceb12686db180fc3bd"
+    },
+    {
+      "path": "tools/test_recording_viewer.cjs",
+      "sha256": "be42e2c67948221731d2eba7ed5e52998d251553e4bf00a12037456e5f593982"
+    },
+    {
+      "path": "tools/validate_stack.py",
+      "sha256": "f16eff25416373ac83bc07b651a6dc0caf4a9369a4df9137b289f662c9b8d3a2"
+    }
+  ]
+}

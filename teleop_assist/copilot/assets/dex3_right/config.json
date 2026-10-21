@@ -1,0 +1,112 @@
+{
+  "open": {
+    "right_hand_thumb_0_joint": 0.0,
+    "right_hand_thumb_1_joint": -0.0,
+    "right_hand_thumb_2_joint": -0.005,
+    "right_hand_index_0_joint": 0.005,
+    "right_hand_index_1_joint": 0.005,
+    "right_hand_middle_0_joint": 0.005,
+    "right_hand_middle_1_joint": 0.005
+  },
+  "close": {
+    "right_hand_thumb_0_joint": 0.0,
+    "right_hand_thumb_1_joint": -0.72,
+    "right_hand_thumb_2_joint": -0.72,
+    "right_hand_index_0_joint": 0.9,
+    "right_hand_index_1_joint": 0.9,
+    "right_hand_middle_0_joint": 0.9,
+    "right_hand_middle_1_joint": 0.9
+  },
+  "fingertip": [
+    0.0,
+    0.0,
+    0.065
+  ],
+  "sweep_volume": {
+    "extents": [
+      0.1,
+      0.06,
+      0.03
+    ],
+    "offset": [
+      0.0,
+      0.0,
+      0.065
+    ],
+    "extents2": [
+      0.04,
+      0.06,
+      0.02
+    ],
+    "offset2": [
+      0.0,
+      0.0,
+      0.065
+    ]
+  },
+  "links": [
+    "right_wrist_yaw_link",
+    "right_hand_palm_link",
+    "right_hand_thumb_0_link",
+    "right_hand_thumb_1_link",
+    "right_hand_thumb_2_link",
+    "right_hand_middle_0_link",
+    "right_hand_middle_1_link",
+    "right_hand_index_0_link",
+    "right_hand_index_1_link"
+  ],
+  "standoff": [
+    0.0,
+    0.01
+  ],
+  "symmetric": false,
+  "type": "revolute_3f",
+  "base_rotation": [
+    [
+      -1.0,
+      0.0,
+      0.0,
+      0.14
+    ],
+    [
+      0.0,
+      0.0,
+      1.0,
+      0.0
+    ],
+    [
+      0.0,
+      1.0,
+      0.0,
+      0.0
+    ],
+    [
+      0.0,
+      0.0,
+      0.0,
+      1.0
+    ]
+  ],
+  "descriptor_schema": "punktnull.dex3_right.side_entry.v1",
+  "status": "geometry_checked_design_hypothesis_not_grasp_success_certificate",
+  "canonical_frame": "C; +X=-wristX, +Y=wristZ, +Z=wristY, origin_wrist=[0.140,0,0]m",
+  "pose_output_contract": "T_pointcloud_canonical; T_world_XR_R_ee=T_world_pointcloud @ grasp @ base_rotation @ Trans(0.05,0,0)",
+  "fingertip_semantics": "Named for upstream schema compatibility: open inner-box center, not a measured robot TCP.",
+  "closure_semantics": "Named joint targets; real-world DDS order is not certified; source abduction changed to zero for symmetric opposition.",
+  "operating_scope": "One right-hand side-entry grasp family for rigid objects long enough to span index and middle pads. Human retains fingers until contact-aware execution is independently validated.",
+  "bbox": [
+    [
+      -0.07699525881656705,
+      -0.04389772564172745,
+      -0.02441621336340904
+    ],
+    [
+      0.09850000000037257,
+      0.04389594495296478,
+      0.11407880698811967
+    ]
+  ],
+  "geometry_assets_sha256": {
+    "gripper.urdf": "4e18a47b4b8781f1a1d97f32c781b97cacbb08b2ddfe7817739f7039276c2340"
+  }
+}

@@ -1,0 +1,10 @@
+# Dedicated .venv-pose only. PyTorch/NumPy inherit the existing CUDA environment.
+gdown==6.4.0
+pybind11==3.1.0
+kornia==0.8.3
+omegaconf==2.3.0
+open3d==0.20.0
+transformations==2026.1.18
+ruamel.yaml==0.19.1
+warp-lang==1.12.1
+ninja==1.13.2

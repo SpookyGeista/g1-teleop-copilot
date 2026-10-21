@@ -1,0 +1,46 @@
+{
+  "schema": "punktnull.sim_fixture.v1",
+  "scope": "explicitly_initialized_isolated_orientation_bench",
+  "model": "actual pretrained GraspGenX current Dex3 inference",
+  "candidate_source": "runs/copilot_unitree_pipeline_003/latest_proposals.json candidate :39",
+  "inference_input_sha256": "9762a845d61d0681c543d3ad88259632138a14ba5de746451068aa42edaff818",
+  "inference_timestamp_is_not_live": true,
+  "source_usd_relative": "assets/robots/g1-29dof-dex3-base-fix-usd/g1_29dof_with_dex3_base_fix.usd",
+  "source_usd_sha256": "d23b9bbc8b59cf20fa1983f55874f855a76e038b9e22eae39542e62be5b4ba3d",
+  "scene": {
+    "cylinder_center": [
+      0.4,
+      -0.18,
+      0.9
+    ],
+    "cylinder_radius": 0.02,
+    "cylinder_height": 0.08,
+    "table_center": [
+      0.48,
+      0,
+      0.84
+    ],
+    "table_size": [
+      0.65,
+      0.8,
+      0.04
+    ],
+    "robot_fixed_base_height": 0.75
+  },
+  "files": {
+    "candidate.json": "f6aa4032e97245325b322c262f4ff8e28824479107fe12861d02700311bfbca4",
+    "initialization.json": "567f445a6568165ad349e829808ffb0097c437ddca468e290ddbe22005dd2ac1"
+  },
+  "limitations": [
+    "no home-to-grasp approach",
+    "no hand closure or lift",
+    "not a human study",
+    "no real robot or headset test"
+  ],
+  "runtime_requirement": "Recheck actual q43, full known scene and candidate endpoint; each actual command needs fresh guard and consumption lease.",
+  "model_source_observation_id": "unitree_usd_scene_observed_mount_v1:0",
+  "model_source_capture_timestamp": 2191930.766571063,
+  "model_source_clock_id": "host_monotonic:afcc308e-c82d-4e82-8fba-150bc2ad6832",
+  "calibration_id": "unitree_usd_scene_observed_mount_v1",
+  "descriptor_sha256": "8ae743a3acb77343a13e2d2ce66e696255ff33383c5689f713b160b6550bba80"
+}

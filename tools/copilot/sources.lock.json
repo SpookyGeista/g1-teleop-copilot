@@ -1,0 +1,293 @@
+{
+  "schema": "punktnull.copilot.sources.v1",
+  "recorded_at": "2026-10-03",
+  "graspgenx": {
+    "url": "https://github.com/NVlabs/GraspGenX.git",
+    "revision": "b9429097728cb1c430dd78b92edf17ba318aad03",
+    "license": "Apache-2.0",
+    "license_url": "https://github.com/NVlabs/GraspGenX/blob/b9429097728cb1c430dd78b92edf17ba318aad03/LICENSE"
+  },
+  "gripper_descriptions": {
+    "url": "https://huggingface.co/datasets/adithyamurali/gripper_descriptions",
+    "revision": "19a03c00d19aeaf052d0f6801f0041982d676e8a",
+    "license": "MIT (dataset card; individual vendor assets may carry additional notices)",
+    "license_url": "https://huggingface.co/datasets/adithyamurali/gripper_descriptions/blob/19a03c00d19aeaf052d0f6801f0041982d676e8a/README.md"
+  },
+  "checkpoints": {
+    "url": "https://huggingface.co/adithyamurali/GraspGenXModel",
+    "revision": "7c834043c11a11417e31d6d5ea9355801e40a2c1",
+    "license": "NVIDIA Open Model License",
+    "license_url": "https://www.nvidia.com/en-us/agreements/enterprise-software/nvidia-open-model-license/",
+    "files": {
+      "release/gen/epoch_736.pth": {
+        "sha256": "8b55f31cdb8340a573b4df27b027c15cff326bd6debcb389bf631d2aaab7ac44",
+        "bytes": 1210918342
+      },
+      "release/dis/epoch_1056.pth": {
+        "sha256": "cbf3f3bdb2e4c03fca8486ed24de0e6a8a859e6bd22bce2f1434a610335abd3e",
+        "bytes": 483889478
+      },
+      "release/gen/config.yaml": {
+        "sha256": "16aedbdc23441a1db818261b865f55bd71451d6224fc514615e0d1ab744b7dcb",
+        "bytes": 4006
+      },
+      "release/dis/config.yaml": {
+        "sha256": "43cf8ea0ade67d938040bde0df318b3f4c9c19e4f88d97052dc175df2c28c8e7",
+        "bytes": 4024
+      }
+    }
+  },
+  "dex3": {
+    "config_sha256": "8ae743a3acb77343a13e2d2ce66e696255ff33383c5689f713b160b6550bba80",
+    "validation_sha256": "d25e7cfac18cf8fc8aaec756b59069734e8c6ec008c958259bb4d02cf569c32b",
+    "license": "BSD-3-Clause (copied Unitree assets)",
+    "license_file": "teleop_assist/copilot/assets/dex3_right/UNITREE_ASSETS_LICENSE.txt"
+  },
+  "environment": {
+    "python_major_minor": "3.11",
+    "torch_backend": "cu124",
+    "constraints_sha256": "8a0538106360d148814de8902d98a8c87cf63fd6d709d4ff0d271a6c82622e8e",
+    "required_versions": {
+      "absl-py": "2.5.0",
+      "addict": "2.4.0",
+      "aiohappyeyeballs": "2.7.1",
+      "aiohttp": "3.14.3",
+      "aiosignal": "1.4.0",
+      "attrs": "26.1.0",
+      "braceexpand": "0.1.7",
+      "certifi": "2026.7.22",
+      "chardet": "7.6.0",
+      "charset-normalizer": "3.5.2",
+      "cloudpickle": "3.1.2",
+      "colorlog": "6.12.0",
+      "config-path": "1.0.5",
+      "contourpy": "1.3.3",
+      "cycler": "0.12.1",
+      "cython": "3.3.0",
+      "diffusers": "0.11.1",
+      "dm-control": "1.0.47",
+      "dm-env": "1.6",
+      "dm-tree": "0.1.10",
+      "embreex": "4.4.0",
+      "etils": "1.14.0",
+      "filelock": "4.0.9",
+      "fonttools": "4.66.1",
+      "freetype-py": "2.5.1",
+      "frozenlist": "1.8.0",
+      "fsspec": "2026.9.0",
+      "future": "1.0.0",
+      "glfw": "2.10.2",
+      "grpcio": "1.84.0",
+      "h5py": "3.16.0",
+      "httpx": "1.0.dev6",
+      "huggingface-hub": "0.25.2",
+      "hydra-core": "1.4.0.dev10",
+      "idna": "3.20",
+      "imageio": "2.38.0",
+      "importlib-metadata": "9.0.1",
+      "iniconfig": "2.3.0",
+      "jinja2": "3.1.6",
+      "joblib": "1.6.0",
+      "jsonschema": "4.26.0",
+      "jsonschema-specifications": "2025.9.1",
+      "kiwisolver": "1.5.1",
+      "labmaze": "1.0.6",
+      "lxml": "7.0.0b1",
+      "manifold3d": "3.5.4",
+      "mapbox-earcut": "2.1.0",
+      "markdown": "3.11",
+      "markdown-it-py": "4.2.0",
+      "markupsafe": "3.0.4",
+      "matplotlib": "3.11.2",
+      "mdurl": "0.1.2",
+      "mpmath": "1.3.0",
+      "msgspec": "0.22.0",
+      "mujoco": "3.14.0",
+      "multidict": "6.9.1",
+      "narwhals": "2.26.0",
+      "networkx": "3.6.1",
+      "numpy": "1.26.4",
+      "nvidia-cublas-cu12": "12.4.5.8",
+      "nvidia-cuda-cupti-cu12": "12.4.127",
+      "nvidia-cuda-nvrtc-cu12": "12.4.127",
+      "nvidia-cuda-runtime-cu12": "12.4.127",
+      "nvidia-cudnn-cu12": "9.1.0.70",
+      "nvidia-cufft-cu12": "11.2.1.3",
+      "nvidia-curand-cu12": "10.3.5.147",
+      "nvidia-cusolver-cu12": "11.6.1.9",
+      "nvidia-cusparse-cu12": "12.3.1.170",
+      "nvidia-cusparselt-cu12": "0.6.2",
+      "nvidia-nccl-cu12": "2.21.5",
+      "nvidia-nvjitlink-cu12": "12.4.127",
+      "nvidia-nvtx-cu12": "12.4.127",
+      "omegaconf": "2.4.0rc1",
+      "orjson": "3.12.0",
+      "packaging": "26.3",
+      "pillow": "12.3.0",
+      "platformdirs": "4.12.2",
+      "pluggy": "1.6.0",
+      "propcache": "0.5.4",
+      "protobuf": "7.36.2",
+      "psutil": "7.2.2",
+      "pycollada": "0.9.3",
+      "pyglet": "1.4.0b1",
+      "pygments": "2.21.0",
+      "pyopengl": "3.1.5",
+      "pyopengl-accelerate": "4.0.0a1",
+      "pyparsing": "3.3.3",
+      "pyrender": "0.1.17",
+      "pytest": "9.1.1",
+      "python-dateutil": "2.9.0.post0",
+      "python-fcl": "0.7.0.11",
+      "pyvers": "0.2.3",
+      "pyyaml": "6.0.3",
+      "referencing": "0.37.0",
+      "regex": "2026.9.29",
+      "requests": "2.34.2",
+      "rich": "14.3.4",
+      "rpds-py": "2026.6.3",
+      "rtree": "1.4.1",
+      "safetensors": "0.9.0rc1",
+      "scene-synthesizer": "1.15.0",
+      "scikit-learn": "1.9.1",
+      "scipy": "1.17.1",
+      "setuptools": "77.0.3",
+      "setuptools-scm": "10.3.4",
+      "shapely": "2.2.0rc1",
+      "sharedarray": "3.2.4",
+      "six": "1.17.0",
+      "svg-path": "7.1",
+      "sympy": "1.13.1",
+      "tensorboard": "2.21.0",
+      "tensorboard-data-server": "0.7.2",
+      "tensorboardx": "2.6.5",
+      "tensordict": "0.14.2",
+      "threadpoolctl": "3.7.0",
+      "timm": "1.0.15",
+      "tokenizers": "0.21.4",
+      "tomli": "2.4.1",
+      "torch": "2.6.0+cu124",
+      "torch-geometric": "2.8.0.post1",
+      "torchvision": "0.21.0+cu124",
+      "tqdm": "4.70.1",
+      "transformers": "4.48.3",
+      "triangle": "20250106",
+      "trimesh": "4.5.3",
+      "triton": "3.2.0",
+      "truststore": "0.10.4",
+      "typing-extensions": "4.16.0",
+      "urdfpy": "0.0.4",
+      "urllib3": "2.8.0",
+      "usd-core": "26.8",
+      "vcs-versioning": "2.5.0",
+      "vhacdx": "0.1.0",
+      "viser": "1.1.1",
+      "webdataset": "1.0.2",
+      "websockets": "16.1.1",
+      "werkzeug": "3.1.9",
+      "wrapt": "2.5.0",
+      "xatlas": "0.0.11",
+      "xxhash": "4.0.1",
+      "yapf": "0.40.1",
+      "yarl": "1.25.1",
+      "yourdfpy": "0.0.56",
+      "zipp": "4.1.1",
+      "zstandard": "0.25.0"
+    }
+  },
+  "perception": {
+    "grounding_dino": {
+      "repo_id": "IDEA-Research/grounding-dino-tiny",
+      "revision": "a2bb814dd30d776dcf7e30523b00659f4f141c71",
+      "directory": "grounding-dino-tiny",
+      "license": "Apache-2.0",
+      "purpose": "text-conditioned object detection",
+      "files": {
+        "README.md": {
+          "sha256": "cf46f74c7b6850f1d5cbe406028324d8798148726016d46a69a365b4a2d3e89f",
+          "bytes": 2580
+        },
+        "added_tokens.json": {
+          "sha256": "909e96cb32d92ce728a01bc99850cbba26196d74115c17ebeb019275412588f2",
+          "bytes": 82
+        },
+        "config.json": {
+          "sha256": "eec82c5ab66e16df12a9a212e68ac011779927c2536cf9078658e35d85f0c67a",
+          "bytes": 1644
+        },
+        "model.safetensors": {
+          "sha256": "1a2412ef99bd74bcd3c2a246fa1e48581f8889a1300c9051974741314fc042f3",
+          "bytes": 689359096
+        },
+        "preprocessor_config.json": {
+          "sha256": "8454179ba95e2ad22947835aad7b45862a601fc0055ab88bf1ee70892d3aea60",
+          "bytes": 457
+        },
+        "special_tokens_map.json": {
+          "sha256": "b6d346be366a7d1d48332dbc9fdf3bf8960b5d879522b7799ddba59e76237ee3",
+          "bytes": 125
+        },
+        "tokenizer.json": {
+          "sha256": "d241a60d5e8f04cc1b2b3e9ef7a4921b27bf526d9f6050ab90f9267a1f9e5c66",
+          "bytes": 711396
+        },
+        "tokenizer_config.json": {
+          "sha256": "d40ab645b68211910b9170d22433d43186a6ec8ee6fd10ba170524b25bf4fb56",
+          "bytes": 1237
+        },
+        "vocab.txt": {
+          "sha256": "07eced375cec144d27c900241f3e339478dec958f92fddbc551f295c992038a3",
+          "bytes": 231508
+        }
+      }
+    },
+    "sam2": {
+      "repo_id": "facebook/sam2.1-hiera-tiny",
+      "revision": "de431c4043854a71d8101e17995dfe596bf101a5",
+      "directory": "sam2.1-hiera-tiny",
+      "license": "Apache-2.0",
+      "purpose": "box-prompted instance segmentation",
+      "files": {
+        "README.md": {
+          "sha256": "dfa401b1b9358b9650ae487dd2f2bb336fd745c3609e3244adf2e97a22343857",
+          "bytes": 19965
+        },
+        "config.json": {
+          "sha256": "860aff9751b139d83a4ad7df1e5535416fded533e0ead02625edbefcb9953cce",
+          "bytes": 5695
+        },
+        "model.safetensors": {
+          "sha256": "48c14467e5cf9e51870511feb72c89688e82dd74523142c0538b663e193ac2a7",
+          "bytes": 155908064
+        },
+        "preprocessor_config.json": {
+          "sha256": "6ebf229ee259368ce4a8d4f2fe893a72b053023710853e257253939e601f583d",
+          "bytes": 683
+        },
+        "processor_config.json": {
+          "sha256": "f8a68e865cfad115c1c2763f3d93eca7b1c622da06da2a9273eb437fb2389b6d",
+          "bytes": 95
+        },
+        "video_preprocessor_config.json": {
+          "sha256": "9fccfe5f464ec38c2f236d0e6a68e95511c80c22132fc2fa4b9f7b65f24fad95",
+          "bytes": 705
+        }
+      }
+    }
+  },
+  "perception_environment": {
+    "torch_backend": "cu128",
+    "required_versions": {
+      "torch": "2.7.0+cu128",
+      "torchvision": "0.22.0+cu128",
+      "transformers": "4.57.6",
+      "huggingface-hub": "0.36.2",
+      "safetensors": "0.7.0",
+      "Pillow": "11.3.0",
+      "numpy": "1.26.0",
+      "scipy": "1.15.3",
+      "opencv-python-headless": "4.11.0.86"
+    },
+    "scope": "Direct model-process dependencies pinned; original Isaac environment is not recreated."
+  }
+}

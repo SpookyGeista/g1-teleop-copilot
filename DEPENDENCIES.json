@@ -1,0 +1,7 @@
+{
+  "repositories": [
+    "https://github.com/unitreerobotics/xr_teleoperate",
+    "https://github.com/IDEA-Research/GroundingDINO",
+    "https://github.com/facebookresearch/sam2"
+  ]
+}

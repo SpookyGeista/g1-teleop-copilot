@@ -1,0 +1,47 @@
+<!doctype html>
+<html lang="de">
+<head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>.NULL · Assistierte Teleoperation</title><link rel="stylesheet" href="/static/style.css"></head>
+<body>
+<header><a class="brand" href="/">.NULL<span>ROBOTICS</span></a><div class="title">Assistierte Teleoperation <span class="tag">ISAAC SIM</span></div><div class="connection"><span id="connection-dot"></span><span id="connection">Verbinde …</span></div></header>
+<main>
+<section class="workspace">
+<div class="view-toolbar"><span id="control-owner-status">Beobachter · Steuerung noch frei</span><button id="control-claim">Steuerung übernehmen</button><button id="control-release" hidden>Steuerung abgeben</button></div>
+<div class="view-toolbar"><div class="tabs"><button id="view-2d" class="selected">Kamerabild</button><button id="view-3d">3D-Tiefenansicht</button></div><div class="toolbar-end"><div class="frame-info" id="frame-info">Warte auf Kamera</div><button id="stop" class="stop">Halt</button><button id="resume" hidden>Fortsetzen</button></div></div>
+<div id="viewport"><canvas id="camera-canvas" aria-label="Roboterkamera mit erkannten Bauteilen"></canvas><div id="three-container" hidden></div><div class="view-badges"><span id="source-badge">KEINE BILDDATEN</span><span id="view-badge">RGB-D</span></div><div id="empty-state"><div class="scan-icon">＋</div><strong>Warte auf die Simulation</strong><p>Das Roboterbild und die erkannten Teile erscheinen hier.</p></div><div class="image-footer"><span id="candidate-name">Noch kein Ziel</span><span id="selection-mode">AUSWAHL</span></div></div>
+<div class="status-strip"><span><i class="status-key">EINGABE</i><strong id="input-source">Maus / Tastatur</strong></span><span><i class="status-key">ZIEL</i><strong id="target-id">—</strong></span><span><i class="status-key">ASSISTENZ</i><strong id="assist-status">Aus</strong></span></div>
+<p id="frame-age-status" class="footnote">Bildalter — · Messalter —</p>
+<section id="eye-calibration-panel" hidden><strong id="calibration-title">Augen kalibrieren · Punkt 1 / 9</strong><p id="calibration-instruction">Auf den weißen Punkt im Kamerabild schauen. Dann Messung aufnehmen.</p><div class="button-pair"><button id="calibration-capture" class="primary">Messung aufnehmen</button><button id="calibration-cancel">Abbrechen</button></div></section>
+<div id="message" role="status" aria-live="polite">Bauteil ansehen oder anklicken, mit Pfeilen nachjustieren und bestätigen.</div>
+<div class="vr-panel"><div><strong>Holografische Bauteilauswahl</strong><p>RGB-D als räumliche Oberfläche; farbige Quader liegen auf der tatsächlichen Bauteiltiefe.</p></div><button id="enter-vr" class="secondary">VR starten ↗</button></div>
+<p id="xr-status" class="footnote">WebXR wird geprüft …</p><p id="reference-help" class="footnote" hidden><strong>Referenz wie im Quest-Stack:</strong> aufrecht, Oberarme am Körper, Unterarme nach vorn. In VR übernimmt und kalibriert <strong>ABXY</strong>; <strong>AX</strong> startet/pausiert. Kein Griffknopf nötig. ABXY während der Übertragung: Halt.</p>
+<details><summary>Darstellung und Verbindung</summary><p>Die 3D-Ansicht rekonstruiert die sichtbare Oberfläche aus einer einzelnen RGB-D-Kamera. Beim seitlichen Blick können Lücken sichtbar werden. Verdeckte Rückseiten werden nicht erfunden; das ist keine vollständige Stereoaufnahme.</p><p>Für Quest/PICO dieselbe Adresse im Headset-Browser über HTTPS öffnen. Bei einem lokalen Zertifikat zunächst dessen Vertrauensstellung im Headset herstellen. HTTP über eine LAN-IP erlaubt kein WebXR. Desktopbedienung bleibt verfügbar.</p></details>
+</section>
+<aside>
+<div class="section-heading"><span>01</span><h2>Ziel auswählen</h2></div><p class="hint">Blick oder Zeiger schlägt vor. Der Stick wechselt zwischen benachbarten Teilen.</p>
+<div class="toggle-row"><div><label for="eye-toggle">Augen-Tracking</label><small id="eye-status">Aus · kein Tracker nötig</small></div><label class="switch"><input id="eye-toggle" type="checkbox"><span></span></label></div>
+<button id="eye-calibrate" class="wide secondary">Augen kalibrieren · 9 Punkte</button>
+<div id="target-list" class="target-list"><p class="hint">Noch keine erkannten Bauteile.</p></div>
+<div class="navigation-pad" aria-label="Nachbarobjekt auswählen"><button data-direction="up" class="up" aria-label="Oberes Objekt">↑</button><button data-direction="left" class="left" aria-label="Linkes Objekt">←</button><div class="pad-center">STICK</div><button data-direction="right" class="right" aria-label="Rechtes Objekt">→</button><button data-direction="down" class="down" aria-label="Unteres Objekt">↓</button></div>
+<div class="button-pair"><button id="confirm" class="primary">Ziel bestätigen <kbd>↵</kbd></button><button id="release">Lösen <kbd>Esc</kbd></button></div>
+<div class="divider"></div>
+<section id="action-panel" hidden>
+<div class="section-heading"><span>02</span><h2>Handlung festlegen</h2></div>
+<p id="action-status" class="hint">Zuerst ein Ziel bestätigen.</p>
+<div id="action-list" class="target-list" aria-label="Verfügbare Handlungen"></div>
+<button id="action-confirm" class="wide primary">Handlung bestätigen</button>
+<div class="button-pair"><button id="action-execute">Griff sitzt · Ausführung</button><button id="action-approach">Annähern</button></div>
+<p class="hint">Die Auswahl bewegt den Arm noch nicht. Nach jeder Änderung Griff-Freigabe lösen und erneut halten. „Griff sitzt“ bestätigt Ihre Beobachtung; es ist keine automatische Grifferkennung.</p>
+<div class="divider"></div>
+</section>
+<div class="section-heading"><span>03</span><h2>Arm unterstützen</h2></div>
+<div class="toggle-row"><div><label for="assist-toggle">Assistenz aktivieren</label><small>Korrektur nur bei gehaltener Freigabe</small></div><label class="switch"><input id="assist-toggle" type="checkbox"><span></span></label></div>
+<button id="calibrate" class="wide secondary">Handreferenz kalibrieren <kbd>C</kbd></button>
+<button id="deadman" class="wide deadman" aria-pressed="false">Freigabe halten <kbd>Leertaste</kbd></button>
+<p id="controls-help" class="hint controls-help">Desktop: W/S vor/zurück, A/D links/rechts, Q/E runter/hoch. Maus im Bild bewegt die virtuelle Hand bei gehaltener Freigabe. R schließt den Greifer. Controller: Stick wählt zuerst das Objekt, danach die Handlung. A bestätigt, B löst, Griff hält die Freigabe. X kalibriert. Bei bestätigter Handlung: rechten Stick 1 Sekunde drücken, während die Freigabe gelöst ist, um zwischen Annähern und Ausführen zu wechseln.</p>
+<div class="readout"><span>Gemessener Endeffektor</span><code id="ee-position">—</code></div>
+<details id="sensor-diagnostics"><summary>Sensoren und Modellstatus</summary><p id="sensor-status">Warte auf Messungen.</p></details>
+<div class="scope"><strong>Fester Manipulationsprüfstand</strong><span>Simulation · keine Verbindung zu einem physischen Roboter</span></div>
+</aside>
+</main><footer><span>.NULL / SHARED AUTONOMY</span><span id="depth-status">Tiefe: warte</span></footer>
+<script type="module" src="/static/app.mjs"></script>
+</body></html>

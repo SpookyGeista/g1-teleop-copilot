@@ -1,0 +1,10 @@
+{
+  "scope": "isolated_static_simulation_initial_condition_only",
+  "motion_authorized": false,
+  "initialization_sha256": "0ddc3f9e46f3e63935ae7a04668c37e39a7334815bd5bce637deab8dec3c9c30",
+  "preparation_sha256": "377380bf91159c511f0f93e7bf61434476341e4eec4d739ee676fc6b32e80f1e",
+  "preparation_method": "Unchanged original full-q43 geometry and ActualMotionGuard, numerical offline checks; wrists unrotated; no approach trajectory",
+  "measured_PhysX_validation_run": "runs/copilot_operator_neutral_20261006_001",
+  "known_scene": "original_unitree_usd_minimal_table",
+  "real_robot_tested": false
+}

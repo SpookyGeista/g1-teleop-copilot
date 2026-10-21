@@ -1,0 +1,177 @@
+{
+  "scope": "offline_numerical_NO_ACTUATION",
+  "trials": [
+    {
+      "pitch": -0.15,
+      "roll": 0.2,
+      "elbow": -0.4,
+      "collision": {
+        "collision_valid": true,
+        "reason": "conservative_joint_linear_path_clear",
+        "samples_checked": 1,
+        "total_samples": 1,
+        "witness": {
+          "type": "self",
+          "a": "right_hand_thumb_1_link_0",
+          "b": "right_hand_camera_base_link_usd_convex",
+          "sample": 0,
+          "alpha": 0.0,
+          "distance_m": 0.0018634423536599744,
+          "motion_bound_m": 0.0
+        },
+        "minimum_sample_distance_m": 0.0018634423536599744,
+        "conservative_path_clearance_lower_bound_m": 0.0018634423536599744,
+        "allowed_support_contacts": [
+          {
+            "robot_geometry": "left_ankle_roll_link_0",
+            "obstacle": "ground",
+            "distance_m": 9.588220361238416e-06
+          },
+          {
+            "robot_geometry": "left_ankle_roll_link_1",
+            "obstacle": "ground",
+            "distance_m": 0.0001811168655631067
+          },
+          {
+            "robot_geometry": "left_ankle_roll_link_2",
+            "obstacle": "ground",
+            "distance_m": 3.9498523918702483e-07
+          },
+          {
+            "robot_geometry": "left_ankle_roll_link_3",
+            "obstacle": "ground",
+            "distance_m": 0.0002062293594815622
+          },
+          {
+            "robot_geometry": "right_ankle_roll_link_0",
+            "obstacle": "ground",
+            "distance_m": 2.8332919921759264e-07
+          },
+          {
+            "robot_geometry": "right_ankle_roll_link_1",
+            "obstacle": "ground",
+            "distance_m": 9.914025536410416e-06
+          },
+          {
+            "robot_geometry": "right_ankle_roll_link_2",
+            "obstacle": "ground",
+            "distance_m": 2.813749383533473e-07
+          },
+          {
+            "robot_geometry": "right_ankle_roll_link_3",
+            "obstacle": "ground",
+            "distance_m": 1.1838210542962531e-05
+          }
+        ]
+      },
+      "checks": {
+        "up": {
+          "allowed": true,
+          "reason": "full_q43_FK_and_conservative_short_joint_path_valid",
+          "elapsed_s": 0.05906913399849145
+        },
+        "down": {
+          "allowed": true,
+          "reason": "full_q43_FK_and_conservative_short_joint_path_valid",
+          "elapsed_s": 0.057998934000352165
+        },
+        "forward": {
+          "allowed": true,
+          "reason": "full_q43_FK_and_conservative_short_joint_path_valid",
+          "elapsed_s": 0.051898970999900484
+        },
+        "back": {
+          "allowed": true,
+          "reason": "full_q43_FK_and_conservative_short_joint_path_valid",
+          "elapsed_s": 0.054373541999666486
+        }
+      }
+    }
+  ],
+  "selected": {
+    "pitch": -0.15,
+    "roll": 0.2,
+    "elbow": -0.4,
+    "collision": {
+      "collision_valid": true,
+      "reason": "conservative_joint_linear_path_clear",
+      "samples_checked": 1,
+      "total_samples": 1,
+      "witness": {
+        "type": "self",
+        "a": "right_hand_thumb_1_link_0",
+        "b": "right_hand_camera_base_link_usd_convex",
+        "sample": 0,
+        "alpha": 0.0,
+        "distance_m": 0.0018634423536599744,
+        "motion_bound_m": 0.0
+      },
+      "minimum_sample_distance_m": 0.0018634423536599744,
+      "conservative_path_clearance_lower_bound_m": 0.0018634423536599744,
+      "allowed_support_contacts": [
+        {
+          "robot_geometry": "left_ankle_roll_link_0",
+          "obstacle": "ground",
+          "distance_m": 9.588220361238416e-06
+        },
+        {
+          "robot_geometry": "left_ankle_roll_link_1",
+          "obstacle": "ground",
+          "distance_m": 0.0001811168655631067
+        },
+        {
+          "robot_geometry": "left_ankle_roll_link_2",
+          "obstacle": "ground",
+          "distance_m": 3.9498523918702483e-07
+        },
+        {
+          "robot_geometry": "left_ankle_roll_link_3",
+          "obstacle": "ground",
+          "distance_m": 0.0002062293594815622
+        },
+        {
+          "robot_geometry": "right_ankle_roll_link_0",
+          "obstacle": "ground",
+          "distance_m": 2.8332919921759264e-07
+        },
+        {
+          "robot_geometry": "right_ankle_roll_link_1",
+          "obstacle": "ground",
+          "distance_m": 9.914025536410416e-06
+        },
+        {
+          "robot_geometry": "right_ankle_roll_link_2",
+          "obstacle": "ground",
+          "distance_m": 2.813749383533473e-07
+        },
+        {
+          "robot_geometry": "right_ankle_roll_link_3",
+          "obstacle": "ground",
+          "distance_m": 1.1838210542962531e-05
+        }
+      ]
+    },
+    "checks": {
+      "up": {
+        "allowed": true,
+        "reason": "full_q43_FK_and_conservative_short_joint_path_valid",
+        "elapsed_s": 0.05906913399849145
+      },
+      "down": {
+        "allowed": true,
+        "reason": "full_q43_FK_and_conservative_short_joint_path_valid",
+        "elapsed_s": 0.057998934000352165
+      },
+      "forward": {
+        "allowed": true,
+        "reason": "full_q43_FK_and_conservative_short_joint_path_valid",
+        "elapsed_s": 0.051898970999900484
+      },
+      "back": {
+        "allowed": true,
+        "reason": "full_q43_FK_and_conservative_short_joint_path_valid",
+        "elapsed_s": 0.054373541999666486
+      }
+    }
+  }
+}

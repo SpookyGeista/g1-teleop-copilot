@@ -1,0 +1,17 @@
+{
+  "destination": "teleop_assist/copilot/assets/dex3_right",
+  "geometry_dependency": [
+    {
+      "file": "gripper.urdf",
+      "sha256": "4e18a47b4b8781f1a1d97f32c781b97cacbb08b2ddfe7817739f7039276c2340"
+    },
+    {
+      "file": "vis_mesh.obj",
+      "sha256": "434afa45093b41dbf1721cf5fba855a8a0c764d20b5320a69a96446606d69622"
+    },
+    {
+      "file": "coll_mesh.obj",
+      "sha256": "434afa45093b41dbf1721cf5fba855a8a0c764d20b5320a69a96446606d69622"
+    }
+  ]
+}

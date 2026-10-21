@@ -1,0 +1,21 @@
+{
+  "schema": "punktnull.copilot.local.v1",
+  "paths": {
+    "grasp_repository": "third_party/GraspGenX",
+    "grasp_python": "third_party/GraspGenX/.venv/bin/python",
+    "perception_python": ".venv-models/bin/python",
+    "xr_repository": "/path/to/workspace/xr_teleoperate",
+    "xr_python": "/path/to/workspace/miniconda3/envs/to/bin/python",
+    "isaac_repository": "/path/to/workspace/unitree_sim_isaaclab",
+    "isaac_python": "/path/to/workspace/miniconda3/envs/unitree_sim_env/bin/python",
+    "descriptor": "teleop_assist/copilot/assets/dex3_right/config.json",
+    "model_root": "models"
+  },
+  "xr": {
+    "mode": "shadow",
+    "proposal_mailbox": "runs/copilot_live/latest_proposals.json",
+    "control_mailbox": "runs/copilot_live/copilot_control.json",
+    "status_path": "runs/copilot_live/xr_status.json",
+    "calibration_id": "unitree_usd_scene_observed_mount_v1"
+  }
+}

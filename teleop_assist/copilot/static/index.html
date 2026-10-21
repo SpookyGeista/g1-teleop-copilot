@@ -1,0 +1,209 @@
+<!doctype html>
+<html lang="de"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>G1 · Greifassistenz</title>
+<style>
+:root{font-family:system-ui,sans-serif;color:#e8edf4;background:#111821;color-scheme:dark}*{box-sizing:border-box}body{margin:0}header{padding:24px 32px;border-bottom:1px solid #293643;display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap}h1{font-size:23px;margin:0}small,.muted{color:#a5b4c3}.badge{border:1px solid #476372;padding:8px 14px;border-radius:30px}main{display:grid;grid-template-columns:minmax(400px,1fr) 330px;gap:24px;padding:28px;max-width:1500px;margin:auto}.camera{position:relative;background:#080e16;min-height:300px;border-radius:14px;overflow:hidden;aspect-ratio:4/3}.camera img{width:100%;height:100%;object-fit:contain}.camera canvas{position:absolute;inset:0;width:100%;height:100%}.camera .empty{position:absolute;inset:0;display:grid;place-content:center;text-align:center;padding:30px;pointer-events:none}.panel{background:#1c2631;border:1px solid #344250;padding:20px;border-radius:14px}h2{font-size:17px;margin:0 0 14px}.stack{display:flex;flex-direction:column;gap:12px}button{border:1px solid #536374;border-radius:9px;background:#293747;color:#f6f9fc;padding:12px 14px;font-size:15px;cursor:pointer;touch-action:none}button:disabled{opacity:.4;cursor:not-allowed}button:hover:enabled{border-color:#8cdccf}button.chosen{border-color:#66d9c2;background:#203d3b}.primary{background:#66d9c2;color:#082a24;font-weight:650}.stop{background:#513137;border-color:#a75f68}.hold{padding:20px 14px}.hold.active{background:#b8f5d9}.status{margin-top:18px;min-height:45px;line-height:1.5}.object{margin:4px 4px 0 0}#candidates{display:grid;gap:8px}#candidates button{text-align:left;display:flex;justify-content:space-between;align-items:center}#candidates small{margin-left:10px}.foot{padding:18px 32px;color:#a5b4c3;font-size:13px}#notice{color:#e6b878}.screenread{position:absolute;left:-9999px}@media(max-width:850px){main{grid-template-columns:1fr;padding:16px}.camera{min-height:200px}header{padding:18px}}
+.sim-link{color:#8ee2d1;text-underline-offset:3px}.sim-workflow{padding:14px 16px;border:1px solid #476372;border-radius:9px}.sim-workflow small{display:block;margin-top:7px}
+.runtime-target{border-color:#8ab4f8}.runtime-target p{line-height:1.5;margin:10px 0}.runtime-target code{font-size:11px;overflow-wrap:anywhere;color:#b6d2fc}.candidate-label{display:block;font-size:12px;color:#b6d2fc;margin-top:4px}#candidates button.sim-target{border:2px solid #8ab4f8;background:#24354e}#candidates button.preview-chosen{box-shadow:inset 4px 0 #ffffac}#preview-choice{font-size:13px;line-height:1.5}[hidden]{display:none!important}
+</style></head><body>
+<header><div><h1>G1 · Greifassistenz</h1><small>Objekt wählen. Griff bestätigen. Ausrichtung unterstützen.</small></div><span class="badge" id="mode">Vorschau</span></header>
+<main><section><div class="camera"><img id="camera" alt="Roboterkamera"><canvas id="overlay"></canvas><div id="ghost-legend" hidden style="position:absolute;bottom:12px;left:12px;padding:7px 10px;border-radius:7px;background:#142a2bdf;color:#f4f3b0;font-size:13px">Offene Dex3 · vorgeschlagene Pose</div><div class="empty" id="empty">Warte auf Kamerabild.<br><small>Die manuelle Teleoperation bleibt unabhängig.</small></div></div><p id="notice">Verbindung wird aufgebaut …</p><p id="sim-workflow" class="sim-workflow" hidden><a id="sim-link" class="sim-link" href="/sim">Weiter zur Simulation: Griff auswählen →</a><small>Dort Hände abgleichen, Griff bestätigen und Unterstützung gedrückt halten.</small></p><div class="panel"><h2>1 · Objekt auswählen</h2><div id="objects">Noch keine beobachteten Objekte.</div></div></section>
+<aside class="stack"><div id="sim-target-panel" class="panel runtime-target" hidden><h2 id="sim-target-heading">Ziel der Sim-Steuerung</h2><p id="sim-target-status" role="status" aria-live="polite"></p><code id="sim-target-id"></code><p id="sim-target-detail" class="muted"></p><a class="sim-link" href="/sim">Zur Simulationssteuerung →</a></div><div class="panel"><h2 id="candidate-heading">2 · Griff auswählen</h2><div id="candidates">Wähle zuerst ein Objekt.</div><p id="candidate-count" class="muted"></p><p id="preview-choice" class="muted"></p><p id="candidate-help" class="muted">Eine bestätigte Griffwahl bleibt bestehen, auch wenn die KI neue Vorschläge erzeugt.</p></div><div id="xr-controls" class="panel stack"><h2>3 · Bestätigen und unterstützen</h2><button id="confirm" disabled>Griff bestätigen</button><button id="hold" class="primary hold" disabled>Zum Unterstützen gedrückt halten</button><button id="release" class="stop">Assistenz lösen</button><div id="status" class="status" role="status" aria-live="polite">Manuelle Steuerung</div></div></aside></main>
+<div class="foot" id="scope-note">Die Assistenz unterstützt die Handorientierung. Bei unklarer Wahrnehmung wird keine neue Griffwahl übernommen.</div>
+<script>
+const $=id=>document.getElementById(id);
+let state={},choice=null,holding=false,lastFrame=null,lastCandidates='',lastObjects='',timer=null;
+let loadedFrameKey=null;
+let token=null,clientId=null,commandSequence=0,holdGeneration=0,pendingHold=false;
+const simContext=(s=state)=>s.sim?.schema==='punktnull.sim_runtime.v1'&&s.sim?.mode==='isolated_PhysX';
+function simFresh(s){const r=s.sim||{},age=s.server_monotonic-r.timestamp;return simContext(s)&&typeof s.clock_id==='string'&&r.clock_id===s.clock_id&&Number.isFinite(s.server_monotonic)&&Number.isFinite(r.timestamp)&&age>=0&&age<=.5&&r.reason!=='runtime_stopped';}
+const identity=x=>typeof x==='string'&&x.length>0&&x.length<=256?x:null;
+function samePose(a,b){return Array.isArray(a)&&Array.isArray(b)&&a.length===4&&b.length===4&&a.every((row,i)=>Array.isArray(row)&&Array.isArray(b[i])&&row.length===4&&b[i].length===4&&row.every((v,j)=>Number.isFinite(v)&&Number.isFinite(b[i][j])&&Math.abs(v-b[i][j])<=1e-8));}
+function simTarget(s,candidates){
+ const r=s.sim||{},snap=r.snapshot||{},confirmed=snap.confirmed===true?identity(snap.confirmed_candidate_id):null,id=confirmed||identity(snap.selected_candidate_id);
+ const result={present:simContext(s),fresh:simFresh(s),id,confirmed:!!confirmed,candidate:null,targetId:identity(snap.target_id)};
+ if(!result.fresh||!id)return result;
+ const offered=Array.isArray(r.candidates)?r.candidates.find(c=>c.candidate_id===id):null,b=s.proposals||{};
+ const sourceMatches=snap.model_source_capture_timestamp===undefined||(snap.model_source_capture_timestamp===b.model_source_capture_timestamp&&snap.model_source_clock_id===b.clock_id&&snap.calibration_id===b.calibration_id);
+ if(offered&&sourceMatches&&result.targetId===b.target_id)result.candidate=candidates.find(c=>c.candidate_id===id&&identity(c.source)&&c.source===offered.source&&samePose(c.base_ee,offered.base_ee))||null;
+ return result;
+}
+const owns=()=>state.ownership?.owned_by_this_client===true;
+const canChoose=()=>owns()||state.ownership?.available===true;
+const reasonLabels={manual:'Manuelle Steuerung',selected:'Griff ausgewählt',confirmed:'Griff bestätigt',assisting:'Orientierung wird unterstützt',returning_to_manual:'Unterstützung wird gelöst',counterrotation:'Gegenbewegung erkannt – Assistenz gelöst',input_stale:'Bedienereingabe veraltet',target_stale:'Zielbeobachtung veraltet',runtime_motion_guard_unavailable:'Bewegungsprüfung fehlt – nur Vorschau',runtime_motion_guard_rejected:'Aktuelle Bewegung nicht freigegeben',choose_object:'Wähle ein beobachtetes Objekt.',waiting_for_selected_object:'Warte auf das gewählte Objekt.',calculating_proposals:'Griffvorschläge werden berechnet.',preview_ready:'Griffvorschläge bereit. Die Bewegung bleibt gesperrt.',camera_clock_unknown_or_stale:'Kamerabild veraltet oder Aufnahmezeit unbekannt.',selected_object_not_observed:'Objekt nicht mehr sichtbar. Bitte erneut auswählen.',invalid_target_geometry:'Objektgeometrie nicht eindeutig. Bitte erneut auswählen.',proposal_pipeline_failed:'Griffberechnung fehlgeschlagen. Bitte erneut auswählen.',camera_stream_expired:'Kamerabilder fehlen oder sind zu alt. Bitte erneut auswählen.',camera_or_perception_failed:'Kamera oder Objekterkennung nicht verfügbar.',service_stopped:'Assistenzdienst beendet.',identity_clock_or_calibration_changed:'Objekt oder Kalibrierung geändert. Bitte erneut auswählen.',observed_target_stale:'Objektbeobachtung veraltet.',observation_sequence_gap:'Bildfolge unterbrochen. Bitte erneut auswählen.',observation_id_reused:'Bildfolge nicht eindeutig.',nonincreasing_acquisition_time:'Aufnahmezeiten nicht eindeutig.',robot_base_moved:'Roboterbasis bewegt. Bitte erneut auswählen.',observed_target_surface_changed:'Objekt bewegt oder Sicht verändert. Bitte erneut auswählen.',collecting_stationary_observations:'Warte auf eine stabile Ansicht.',observed_surface_stable:'Beobachtete Objektoberfläche stabil.'};
+function humanReason(reason,fallback){return reasonLabels[reason]||fallback;}
+const reachable=c=>c.ik_valid===true;
+const approachClear=c=>reachable(c)&&c.observed_hand_collision?.pregrasp_collision_free===true;
+const staticSimPolicy=b=>b.preview_ranking_policy==='complete_static_sim_orientation';
+const score=c=>Number.isFinite(c.model_score)?c.model_score:-Infinity;
+function rankCandidates(candidates,batch){return [...candidates].sort((a,b)=>staticSimPolicy(batch)?Number(b.recorded_sim_endpoint_clear===true)-Number(a.recorded_sim_endpoint_clear===true)||score(b)-score(a):Number(approachClear(b))-Number(approachClear(a))||Number(reachable(b))-Number(reachable(a))||score(b)-score(a));}
+function candidateSummary(batch,candidates,shown){
+ const counts=batch.candidate_counts||{},total=Number.isInteger(counts.total)&&counts.total>=candidates.length?counts.total:candidates.length;
+ const count=(name,limit=total)=>Number.isInteger(counts[name])&&counts[name]>=0&&counts[name]<=limit?counts[name]:null;
+ if(staticSimPolicy(batch)){
+  const ik=count('ik_valid'),endpoints=count('recorded_sim_endpoint_clear'),checked=count('observed_hand_checked'),clear=checked===null?null:count('ik_and_pregrasp_clear',checked);
+  const overall=`${shown} von ${total} angezeigt · ${ik===null?'Erreichbarkeit: Zahl unbekannt':`${ik} kinematisch erreichbar`} · ${endpoints===null?'Sim-Endposen: Zahl unbekannt':`${endpoints} statische Sim-Endposen frei`}.`;
+  const observed=checked===null?'Umfang der beobachteten Handannäherungsprüfung unbekannt.':`Beobachtete Handannäherung: nur ${checked} von ${total} geprüft${clear===null?'':`, davon ${clear} erreichbar und frei`}.`;
+  return `${overall} ${observed} Keine Bewegungs- oder Anfahrfreigabe.`;
+ }
+ const clear=count('ik_and_pregrasp_clear'),blocked=clear===null?candidates.filter(c=>!approachClear(c)).length:total-clear;
+ return `${shown} von ${total} angezeigt · ${total-shown} weitere · ${blocked} ohne bestätigte Erreichbarkeit und freie Annäherung. Aktive Bewegung separat gesperrt.`;
+}
+function candidateDetails(candidate){
+ const observed=candidate.observed_hand_collision||{},verdict=value=>value===true?'frei':value===false?'nicht frei':'nicht geprüft';
+ return `Vorschlag: ${candidate.candidate_id}\nStatische Sim-Endpose: ${verdict(candidate.recorded_sim_endpoint_clear)}. Nur Vorschau.\nBeobachtete offene Hand: ${verdict(observed.hand_collision_free)}.\nGerade Annäherung an beobachteten Punkten: ${verdict(observed.pregrasp_collision_free)}.\nPrüfwerte: hand_collision_free=${observed.hand_collision_free??'unbekannt'}, pregrasp_collision_free=${observed.pregrasp_collision_free??'unbekannt'}, status=${observed.status??'unbekannt'}.\nKeine Bewegungs- oder Anfahrfreigabe.`;
+}
+async function post(path,value){
+ const r=await fetch(path,{method:'POST',headers:{'Content-Type':'application/json','X-Copilot-Token':token,'X-Copilot-Sequence':String(++commandSequence)},body:JSON.stringify(value),keepalive:true});
+ const body=await r.json();if(!r.ok)throw Error(body.error||'Befehl nicht angenommen');return body;
+}
+async function command(action,candidate_id){
+ if(simContext()&&action!=='release')return; // Only surrender a prior preview lease here.
+ const generation=holdGeneration;
+ try{
+  const result=await post('/api/control',{action,candidate_id});
+  if(action==='select')state.ownership={owned_by_this_client:true,available:false};
+  if(action==='release')state.ownership={owned_by_this_client:false,available:true};
+  return result;
+ }catch(e){
+  if(action==='hold'&&generation!==holdGeneration)return;
+  $('notice').textContent=e.message;holding=false;clearInterval(timer);$('hold').classList.remove('active');throw e;
+ }
+}
+function stopHolding(clearChoice=false){
+ ++holdGeneration;holding=false;clearInterval(timer);$('hold').classList.remove('active');
+ if(clearChoice){choice=null;lastCandidates='';}
+ if(token&&owns())command(clearChoice?'release':'idle').catch(()=>{});
+}
+async function heartbeatHold(){
+ if(!holding||pendingHold||document.hidden)return;
+ pendingHold=true;
+ try{await command('hold');}catch(e){}finally{pendingHold=false;}
+}
+$('release').onclick=()=>stopHolding(true);
+$('confirm').onclick=()=>command('confirm').catch(()=>{});
+$('hold').onpointerdown=e=>{
+ if($('hold').disabled||!owns())return;
+ e.preventDefault();$('hold').setPointerCapture(e.pointerId);++holdGeneration;
+ holding=true;$('hold').classList.add('active');heartbeatHold();timer=setInterval(heartbeatHold,50);
+};
+for(const name of ['pointerup','pointercancel','lostpointercapture'])$('hold').addEventListener(name,()=>stopHolding(false));
+window.addEventListener('blur',()=>stopHolding(true));
+window.addEventListener('pagehide',()=>stopHolding(true));
+document.addEventListener('visibilitychange',()=>{if(document.hidden)stopHolding(true)});
+$('camera').style.visibility='hidden';
+function clearOverlay(){const canvas=$('overlay');canvas.getContext('2d').clearRect(0,0,canvas.width,canvas.height);$('ghost-legend').hidden=true;}
+$('camera').onload=()=>{
+ const binding=state.perception?.display_frame,url=new URL($('camera').currentSrc,location.href);
+ if(binding&&(url.searchParams.get('id')!==binding.key||url.searchParams.get('sha256')!==binding.jpeg_sha256)){clearOverlay();return;}
+ loadedFrameKey=binding?.key??null;$('empty').style.display='none';$('camera').style.visibility='visible';render(state);
+};
+$('camera').onerror=()=>{loadedFrameKey=null;lastFrame=null;clearOverlay();$('empty').style.display='grid';$('camera').style.visibility='hidden'};
+function render(s){
+ state=s;const p=s.perception||{},b=s.proposals||{},xr=s.xr||{},snap=xr.snapshot||xr.controller||{};
+ const context=simContext(s),owned=owns(),choose=canChoose()&&(!context||(simFresh(s)&&s.sim.scripted_operator!==true&&s.sim.scripted_test!==true&&(s.sim_ownership?.available===true||s.sim_ownership?.owned_by_this_client===true)));
+ const fresh=Number.isFinite(xr.timestamp)&&Number.isFinite(s.server_monotonic)&&s.server_monotonic-xr.timestamp>=0&&s.server_monotonic-xr.timestamp<=.4;
+ const sim=s.sim||{};
+ $('scope-note').textContent=context?'Die Assistenz unterstützt die Handorientierung. Im isolierten Prüfstand führst du die Handposition; die Finger bleiben auf ihrem gemessenen Stand. Kein Greifen oder Heben.':'Die Assistenz unterstützt die Handorientierung. Position und Fingerschluss steuerst du im bestehenden Teleop-Pfad selbst. Bei unklarer Wahrnehmung wird keine neue Griffwahl übernommen.';
+ if(sim.ai_assist)$('scope-note').textContent='KI-Greifhilfe für die rechte Hand: bis 3 cm Positionskorrektur und 20° Ausrichtung, solange du die rechte Grifftaste hältst. Die Zeigefinger-Trigger steuern beide Hände. Diese Ansicht zeigt die KI-Kamera; in VR bleibt die Kopfansicht.';
+ $('sim-workflow').hidden=!simFresh(s);
+ $('xr-controls').hidden=context;$('sim-target-panel').hidden=!context;
+ $('candidate-heading').textContent=context?'Griffvorschau':'2 · Griff auswählen';
+ $('candidate-help').textContent=context?'Klicks hier ändern nur die Ansicht. Griffwahl, Bestätigung und Halten erfolgen in der Simulationssteuerung.':'Eine bestätigte Griffwahl bleibt bestehen, auch wenn die KI neue Vorschläge erzeugt.';
+ const modeLabels={review:'Aufzeichnung · Vorschau',recorded:'Aufzeichnung · Vorschau',replay:'Aufzeichnung · Vorschau',shadow:'Vorschau',live:'Live · Vorschau'};
+ $('mode').textContent=xr.mode==='assist'&&fresh?(xr.input_hold_required?'Assistenz gesperrt':'Assistenz verfügbar'):(modeLabels[p.mode]||(typeof p.mode==='string'&&/[ ·]/.test(p.mode)?p.mode:'Vorschau'));
+ const binding=p.display_frame,frame=binding?.key??s.frame_revision??p.frame_id;
+ if(frame!==undefined&&frame!==null&&frame!==lastFrame){
+  lastFrame=frame;loadedFrameKey=null;clearOverlay();
+  if(binding){$('camera').style.visibility='hidden';$('camera').parentElement.style.aspectRatio=`${binding.width}/${binding.height}`;$('camera').parentElement.style.minHeight='0';}
+  $('camera').src='/frame.jpg?id='+encodeURIComponent(frame)+(binding?'&sha256='+encodeURIComponent(binding.jpeg_sha256):'');
+ }
+ $('notice').textContent=context&&(s.sim.scripted_operator===true||s.sim.scripted_test===true)?'Synthetischer Test · nur Beobachtung. Lokale Griffansichten ändern keine Eingabe.':context&&!simFresh(s)?'Keine aktuelle Simulation. Die gespeicherte Vorschau kann angesehen werden.':!choose?'Ein anderes Fenster bedient die Assistenz. Lokale Griffansichten bleiben möglich.':p.mode==='review'?'Aufzeichnung: Griffposen als Vorschau. Bewegungen sind gesperrt.':humanReason(p.status||p.reason,b.valid?'Griffvorschläge geprüft. Wähle eine passende Annäherung.':'Vorschläge werden geprüft; aktive Unterstützung bleibt gesperrt.');
+ if(binding&&p.camera_current===false&&!['review','recorded','replay'].includes(p.mode))$('notice').textContent='Letztes Kamerabild · '+$('notice').textContent;
+ const objects=p.objects||[];
+ const os=JSON.stringify([objects.map(t=>[t.target_id,t.label]),p.selected_target_id,choose]);
+ if(os!==lastObjects){lastObjects=os;$('objects').replaceChildren();
+  for(const t of objects){const el=document.createElement('button');el.className=t.target_id===p.selected_target_id?'object chosen':'object';el.disabled=!choose;el.textContent=t.label||t.target_id;
+   el.onclick=async()=>{stopHolding(false);choice=null;lastCandidates='';try{await post('/api/target',{target_id:t.target_id});state.ownership={owned_by_this_client:true,available:false};}catch(e){$('notice').textContent=e.message}};$('objects').append(el);}
+  if(!objects.length)$('objects').textContent='Noch keine beobachteten Objekte.';
+ }
+ const cs=p.selected_target_id&&b.target_id!==p.selected_target_id?[]:(b.candidates||[]);
+ const target=simTarget(s,cs),simPolicy=staticSimPolicy(b),visible=rankCandidates(cs,b).slice(0,8);
+ if(target.candidate&&!visible.includes(target.candidate)){if(visible.length===8)visible.pop();visible.push(target.candidate);}
+ const targetIndex=target.candidate?visible.indexOf(target.candidate)+1:null;
+ $('sim-target-heading').textContent=target.fresh?'Ziel der Sim-Steuerung':'Letzter Sim-Zustand · nicht aktuell';
+ $('sim-target-status').textContent=!target.fresh?'Keine aktuelle Zielmeldung.':!target.id?'Kein Griff ausgewählt oder bestätigt.':`${target.confirmed?'Bestätigtes Orientierungsziel':'In der Simulation ausgewählt'}${targetIndex?' · Griff '+targetIndex:''}`;
+ $('sim-target-id').textContent=target.id||'';
+ const act=sim.assistance_applied===true?'Zuletzt gemeldet: Orientierungshilfe aktiv.':target.confirmed?'Bestätigt; Unterstützung nur bei gehaltenem Bedienknopf und aktueller Bewegungsprüfung.':'Noch keine bestätigte Ausrichtungshilfe.';
+ $('sim-target-detail').textContent=!target.fresh?'Gespeicherte Angaben sind keine aktuelle Auswahl oder Bewegungsfreigabe.':!target.id?'Die lokale Vorschau wählt kein Steuerungsziel.':!target.candidate?'Das gemeldete Ziel passt nicht eindeutig zu dieser Vorschau. Keine räumliche Zielmarkierung.':act+' Blau markiert das Sim-Ziel. Position manuell; Finger im Prüfstand fest.';
+ if(sim.ai_assist&&target.fresh&&target.candidate)$('sim-target-detail').textContent='Blau: gewählter KI-Griff. Y wählt, B bestätigt; rechte Grifftaste halten unterstützt die Annäherung. Trigger greifen manuell.';
+ $('preview-choice').textContent=context?(choice?'Gelb: lokale Ansicht. Blau: gemeldetes Sim-Ziel.':'Klicke einen Griff für eine zusätzliche lokale Ansicht.'):'';
+ $('candidate-count').textContent=cs.length?candidateSummary(b,cs,visible.length):'';
+ const sig=JSON.stringify([visible,choice,choose,simPolicy,context,target.candidate?.candidate_id,target.confirmed]);
+ if(sig!==lastCandidates){lastCandidates=sig;$('candidates').replaceChildren();
+  visible.forEach((c,i)=>{const el=document.createElement('button');const actual=c===target.candidate;el.className=[c.candidate_id===choice?(context?'preview-chosen':'chosen'):'',actual?'sim-target':''].filter(Boolean).join(' ');el.disabled=!context&&!choose;el.dataset.candidateId=c.candidate_id;el.dataset.simTarget=actual?'true':'false';el.setAttribute('aria-pressed',String(c.candidate_id===choice));el.title=simPolicy?candidateDetails(c):'Vorschlag: '+c.candidate_id;
+   const name=document.createElement('span');name.textContent='Griff '+(i+1);name.style.whiteSpace='nowrap';const info=document.createElement('small');
+   info.textContent=simPolicy?(c.recorded_sim_endpoint_clear===true?'Sim-Endpose frei · nur Vorschau':'Sim-Endpose nicht bestätigt'):(approachClear(c)?'erreichbar · Annäherung frei':reachable(c)?'erreichbar · Annäherung ungeprüft':'Erreichbarkeit nicht bestätigt');
+   if(actual){const marker=document.createElement('span');marker.className='candidate-label';marker.textContent=target.confirmed?'Sim-Ziel · bestätigt':'Sim-Ziel · ausgewählt';info.append(marker);}
+   const triad=document.createElement('canvas');triad.width=56;triad.height=48;triad.title='Tatsächliche EE-Zielorientierung in der Roboterbasis: x rot, y grün, z blau. Keine Kameraperspektive.';drawOrientation(triad,c.base_ee);el.append(triad,name,info);el.onclick=()=>{choice=c.candidate_id;lastCandidates='';if(context)render(state);else command('select',choice).catch(()=>{})};$('candidates').append(el);});
+  if(!cs.length)$('candidates').textContent='Noch keine Griffvorschläge.';
+ }
+ const selected=cs.find(c=>c.candidate_id===choice);
+ $('confirm').disabled=!(!context&&owned&&selected&&selected.geometry_valid===true&&selected.ik_valid===true&&selected.collision_valid===true&&b.valid===true);
+ const confirmed=snap.confirmed_candidate_id||snap.confirmed?.candidate_id||snap.confirmed;
+ $('hold').disabled=!(!context&&owned&&confirmed&&xr.mode==='assist'&&fresh&&!xr.input_hold_required);
+ $('release').disabled=context||!owned;
+ if($('hold').disabled&&holding)stopHolding(true);
+ const reason=xr.reason||snap.reason||p.status;
+ $('status').textContent=humanReason(reason,xr.input_hold_required?'Assistenz gesperrt – Eingabe oder Bewegungsprüfung fehlt.':'Manuelle Steuerung · Griffvorschau');draw(p,visible,target);
+}
+function drawOrientation(canvas,pose){
+ if(!Array.isArray(pose)||pose.length!==4||!pose.every(row=>Array.isArray(row)&&row.length===4&&row.every(Number.isFinite)))return;
+ const ctx=canvas.getContext('2d'),colors=['#f28b82','#81c995','#8ab4f8'],labels=['x','y','z'];
+ ctx.font='10px system-ui';ctx.lineWidth=2;
+ for(let a=0;a<3;a++){const x=28+18*(pose[0][a]-.4*pose[1][a]),y=25-18*(pose[2][a]+.3*pose[1][a]);
+  ctx.strokeStyle=colors[a];ctx.fillStyle=colors[a];ctx.beginPath();ctx.moveTo(28,25);ctx.lineTo(x,y);ctx.stroke();ctx.fillText(labels[a],x+2,y);}
+}
+function draw(p,candidates,target={}){
+ const binding=p.display_frame,recorded=['review','recorded','replay'].includes(p.mode);
+ const cv=$('overlay'),ctx=cv.getContext('2d');cv.width=binding?.width||p.width||$('camera').naturalWidth||640;cv.height=binding?.height||p.height||$('camera').naturalHeight||480;
+ ctx.clearRect(0,0,cv.width,cv.height);ctx.strokeStyle='#64edca';ctx.lineWidth=2;$('ghost-legend').hidden=true;
+ if(binding&&(loadedFrameKey!==binding.key||(!recorded&&p.camera_current!==true)))return;
+ if(binding&&(state.proposals?.preview_frame?.key!==binding.key||(!recorded&&state.proposals?.preview_current!==true)))candidates=[];
+ const point=uv=>Array.isArray(uv)&&uv.length===2&&uv.every(Number.isFinite);
+ const selected=candidates.find(c=>c.candidate_id===choice),actual=candidates.find(c=>c===target.candidate);
+ const ghosts=[actual&&{candidate:actual,actual:true},selected&&selected!==actual&&{candidate:selected,actual:false}].filter(Boolean);
+ for(const ghost of ghosts)for(const polygon of ghost.candidate.preview_hand_polygons||[]){
+  if(!Array.isArray(polygon.uv)||polygon.uv.length<3||!polygon.uv.every(point))continue;
+  ctx.beginPath();polygon.uv.forEach(([u,v],i)=>i?ctx.lineTo(u,v):ctx.moveTo(u,v));ctx.closePath();
+  ctx.fillStyle=ghost.actual?'rgba(138,180,248,.19)':'rgba(255,255,172,.12)';ctx.strokeStyle=ghost.actual?'rgba(138,180,248,.95)':'rgba(255,255,172,.75)';ctx.lineWidth=ghost.actual?2:1;
+  ctx.fill();ctx.stroke();$('ghost-legend').hidden=false;
+ }
+ $('ghost-legend').textContent=actual?'Blau: Sim-Ziel · offene Dex3-Griffpose'+(selected&&selected!==actual?' | Gelb: lokale Ansicht':''):'Offene Dex3 · vorgeschlagene Pose';
+ ctx.strokeStyle='#64edca';ctx.lineWidth=2;
+ for(const t of p.objects||[]){const b=t.bbox_px;if(!Array.isArray(b)||b.length!==4||!b.every(Number.isFinite))continue;
+  const selected=t.target_id===p.selected_target_id;ctx.strokeStyle=selected?'#ffffac':'#64edca';ctx.lineWidth=selected?3:1;
+  ctx.strokeRect(b[0],b[1],b[2]-b[0],b[3]-b[1]);ctx.fillStyle=ctx.strokeStyle;ctx.font='16px system-ui';ctx.fillText((selected?'Gewählt · ':'Vorschlag · ')+(t.label||t.target_id),b[0],Math.max(18,b[1]-7));}
+ for(const c of candidates){
+  const triad=Array.isArray(c.preview_uv)&&c.preview_uv.length===4&&c.preview_uv.every(point)?c.preview_uv:null;
+  const origin=triad?triad[0]:point(c.preview_uv)?c.preview_uv:null;if(!origin)continue;
+  const isActual=c===actual,isPreview=c.candidate_id===choice;const[u,v]=origin;ctx.strokeStyle=isActual?'#8ab4f8':isPreview?'#ffffac':'#64edca';ctx.lineWidth=isActual?3:2;ctx.beginPath();ctx.arc(u,v,isActual?16:isPreview?12:7,0,Math.PI*2);ctx.stroke();
+  if(isActual){ctx.fillStyle='#b6d2fc';ctx.font='14px system-ui';ctx.fillText(target.confirmed?'Sim-Ziel · bestätigt':'Sim-Ziel · ausgewählt',u+20,v-12);}
+  if((isActual||isPreview)&&triad){
+   ['#f28b82','#81c995','#8ab4f8'].forEach((color,a)=>{const end=triad[a+1];ctx.strokeStyle=color;ctx.lineWidth=3;ctx.beginPath();ctx.moveTo(u,v);ctx.lineTo(...end);ctx.stroke();ctx.fillStyle=color;ctx.font='12px system-ui';ctx.fillText(['x','y','z'][a],end[0]+3,end[1]-3);});ctx.lineWidth=2;
+  }
+ }
+}
+async function poll(){
+ try{
+  const r=await fetch('/api/state',{headers:{'X-Copilot-Token':token}});
+  if(!r.ok)throw Error('Verbindung unterbrochen');render(await r.json());
+ }catch(e){$('notice').textContent=e.message;loadedFrameKey=null;lastFrame=null;clearOverlay();stopHolding(true);$('hold').disabled=true;}
+ setTimeout(poll,150);
+}
+async function start(){
+ try{const r=await fetch('/api/session');if(!r.ok)throw Error('Dashboard-Sitzung nicht verfügbar');const s=await r.json();token=s.token;clientId=s.client_id;poll();}
+ catch(e){$('notice').textContent=e.message;$('hold').disabled=true;}
+}
+start();
+</script></body></html>

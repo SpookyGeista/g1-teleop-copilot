@@ -1,0 +1,79 @@
+<!doctype html>
+<html lang="de"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>G1 · Simulationssteuerung</title><style>
+:root{font-family:system-ui,sans-serif;color:#e8edf4;background:#111821;color-scheme:dark}*{box-sizing:border-box}body{margin:0}header{display:flex;justify-content:space-between;align-items:center;gap:16px;flex-wrap:wrap;padding:24px 30px;border-bottom:1px solid #344250}h1{font-size:23px;margin:0 0 5px}h2{font-size:17px;margin:0 0 14px}small,.muted{color:#a5b4c3}a{color:#8ddcca}.badge{border:1px solid #536c7d;border-radius:24px;padding:8px 12px;font-size:14px}main{max-width:1250px;margin:auto;padding:24px;display:grid;grid-template-columns:minmax(360px,1fr) 340px;gap:22px}.panel{background:#1c2631;border:1px solid #344250;border-radius:14px;padding:20px;margin-bottom:16px}.camera{background:#080e16;aspect-ratio:4/3;border-radius:14px;overflow:hidden}.camera img{width:100%;height:100%;object-fit:contain;visibility:hidden}button{width:100%;border:1px solid #536374;border-radius:9px;background:#293747;color:#f6f9fc;padding:13px;font-size:15px;cursor:pointer;touch-action:none;margin-top:8px}button:disabled{opacity:.4;cursor:not-allowed}button.chosen{border-color:#66d9c2;background:#203d3b}.primary{background:#66d9c2;color:#082a24;font-weight:650}.primary.active{background:#b8f5d9}.stop{background:#513137;border-color:#a75f68}.status{line-height:1.5;min-height:45px}#notice{color:#e6b878;line-height:1.5}.foot{padding:12px 24px 24px;max-width:1250px;margin:auto;font-size:13px;color:#a5b4c3}@media(max-width:780px){main{grid-template-columns:1fr;padding:16px}header{padding:18px}}
+</style></head><body>
+<header><div><h1>G1 · Simulationssteuerung</h1><small>VR-Hände abgleichen. Griff bestätigen. Ausrichtung unterstützen.</small></div><span class="badge" id="mode">Warte auf isolierte PhysX-Simulation</span></header>
+<main><section><div class="camera"><img id="camera" alt="Kamera der isolierten Simulation"></div><p id="notice">Verbindung wird aufgebaut …</p><div class="panel"><h2>Aktueller Zustand</h2><div id="status" class="status" role="status" aria-live="polite">Simulation hält.</div><p class="muted">„Hände abgleichen“ verbindet die aktuellen VR-Handpositionen mit den aktuellen Simulationsarmen. Danach folgt die manuelle Positionierung deinen Händen, solange aktuelle Bedienfreigaben eintreffen.</p></div><a href="/">Zur getrennten Griffvorschau</a></section>
+<aside><div class="panel"><h2>Hände abgleichen</h2><button id="clutch" disabled>Hände abgleichen</button></div><div class="panel"><h2>Griff auswählen</h2><div id="candidates">Noch kein freigegebener Simulationskandidat.</div><p id="orientation-only" class="muted" hidden>Nur Orientierungsziel; ein Anfahrweg ist nicht freigegeben.</p><button id="confirm" disabled>Griff bestätigen</button></div><div class="panel"><h2>Orientierung unterstützen</h2><button id="hold" class="primary" disabled>Zum Unterstützen gedrückt halten</button><button id="disarm" class="stop" disabled>Simulation entkoppeln</button><p class="muted">Loslassen beendet die Ausrichtungshilfe. Entkoppeln oder Fensterwechsel hält die Simulationsarme.</p></div></aside></main>
+<div class="foot"><p id="workflow">Hände abgleichen, Griff auswählen und bestätigen, dann Ausrichtungshilfe gedrückt halten.</p>Diese Seite steuert ausschließlich die verbundene isolierte PhysX-Simulation. Jeder Gelenkbefehl benötigt ihre aktuelle Bewegungsprüfung. Griffvorschauen sind keine Bewegungsfreigabe.</div>
+<script>
+const $=id=>document.getElementById(id);
+let state={},token=null,sequence=0,choice=null,holding=false,requestBusy=false,pendingEdge=null,locallyDisarmed=true,waitingForClutch=false,generation=0,lastCandidates='',lastFrame=null;
+const owned=()=>state.sim_ownership?.owned_by_this_client===true;
+const available=()=>owned()||state.sim_ownership?.available===true;
+function runtimeFresh(s=state){const r=s.sim||{};return r.schema==='punktnull.sim_runtime.v1'&&r.mode==='isolated_PhysX'&&r.reason!=='runtime_stopped'&&r.clock_id===s.clock_id&&Number.isFinite(r.timestamp)&&Number.isFinite(s.server_monotonic)&&s.server_monotonic-r.timestamp>=0&&s.server_monotonic-r.timestamp<=.5;}
+const scripted=s=>s.sim?.scripted_operator===true||s.sim?.scripted_test===true;
+const live=(s=state)=>runtimeFresh(s)&&!scripted(s);
+function snapshot(){return state.sim?.snapshot||{};}
+async function send(action,candidate_id){
+ const edge=['clutch','select','confirm'].includes(action),current=++generation;
+ if(action==='release'){locallyDisarmed=true;waitingForClutch=false;holding=false;pendingEdge=null;$('hold').classList.remove('active');}
+ const r=await fetch('/api/sim/control',{method:'POST',headers:{'Content-Type':'application/json','X-Copilot-Token':token,'X-Copilot-Sequence':String(++sequence)},body:JSON.stringify({action,candidate_id}),keepalive:true});
+ const answer=await r.json();if(current!==generation)return answer;
+ if(!r.ok)throw Error(answer.error||'Simulationsbefehl nicht angenommen');
+ if(edge){pendingEdge=answer.revision;state.sim_ownership={owned_by_this_client:true,available:false};}
+ if(action==='select'){waitingForClutch=state.sim?.live_ai===true||snapshot().clutched!==true;locallyDisarmed=false;}
+ if(action==='clutch'){locallyDisarmed=false;waitingForClutch=false;}
+ if(action==='release')state.sim_ownership={owned_by_this_client:false,available:true};
+ return answer;
+}
+function command(action,candidate_id){
+ if(['clutch','select','confirm'].includes(action)){holding=false;$('hold').classList.remove('active');pendingEdge='pending';}
+ return send(action,candidate_id).catch(e=>{pendingEdge=null;$('notice').textContent=e.message;stop();});
+}
+function stop(){holding=false;locallyDisarmed=true;waitingForClutch=false;pendingEdge=null;$('hold').classList.remove('active');if(token&&owned())send('release').catch(()=>{});}
+$('disarm').onclick=stop;
+$('clutch').onclick=()=>command('clutch');
+$('confirm').onclick=()=>command('confirm');
+$('hold').onpointerdown=e=>{if($('hold').disabled)return;e.preventDefault();$('hold').setPointerCapture(e.pointerId);holding=true;$('hold').classList.add('active');heartbeat();};
+for(const name of ['pointerup','pointercancel','lostpointercapture'])$('hold').addEventListener(name,()=>{holding=false;$('hold').classList.remove('active');heartbeat();});
+window.addEventListener('blur',stop);window.addEventListener('pagehide',stop);document.addEventListener('visibilitychange',()=>{if(document.hidden)stop();});
+async function heartbeat(){
+ if(requestBusy||pendingEdge!==null||locallyDisarmed||!live()||!owned()||(snapshot().clutched!==true&&!waitingForClutch)||document.hidden||!document.hasFocus())return;
+ requestBusy=true;try{await send(holding&&snapshot().clutched===true?'hold':'idle');}catch(e){$('notice').textContent=e.message;stop();}finally{requestBusy=false;}
+}
+setInterval(heartbeat,50);
+$('camera').onload=()=>{$('camera').style.visibility='visible'};$('camera').onerror=()=>{$('camera').style.visibility='hidden'};
+function render(s){
+ state=s;const r=s.sim||{},snap=snapshot(),fresh=live(),choose=fresh&&available();
+ if(Number.isInteger(pendingEdge)&&Number.isInteger(snap.last_ui_revision)&&snap.last_ui_revision>=pendingEdge)pendingEdge=null;
+ if(pendingEdge===null)choice=snap.confirmed_candidate_id||snap.selected_candidate_id||null;
+ $('mode').textContent=runtimeFresh()&&scripted(s)?'Synthetischer Test · nur Beobachtung':fresh?'Isolierte PhysX-Simulation':'Keine aktuelle Simulationsverbindung';
+ $('notice').textContent=runtimeFresh()&&scripted(s)?'Dieser Test erzeugt seine Eingaben selbst. Kein Headset verbunden; Bedienknöpfe sind inaktiv.':!fresh?'Warte auf eine aktuelle, ausdrücklich isolierte PhysX-Simulation.':!available()?(String(s.sim_ownership?.owner_client_id||'').startsWith('xr:')?'Die VR-Controller bedienen diese Simulation. Desktop-Eingaben sind gesperrt.':'Ein anderes Fenster bedient diese Simulation.'):snap.clutch_required?'Aktuelle Handpositionen bewusst abgleichen, bevor du weitersteuerst.':'Die Bewegung bleibt an aktuelle XR-Eingaben und die Simulationsprüfung gebunden.';
+ $('orientation-only').hidden=r.live_ai!==true;
+ if(r.ai_assist)$('orientation-only').textContent='Greifhilfe rechts: bis 3 cm Positionskorrektur und 20° Ausrichtung. Trigger greifen weiter manuell.';
+ $('workflow').textContent=r.live_ai===true?'Live-KI: In der Vorschau ein Objekt wählen, hier einen angebotenen Griff auswählen, Hände abgleichen, bestätigen und die Ausrichtungshilfe gedrückt halten.':'Hände abgleichen, Griff auswählen und bestätigen, dann Ausrichtungshilfe gedrückt halten.';
+ if(r.ai_assist)$('workflow').textContent='Quest: ABXY kalibrieren, loslassen, AX starten. Y wählt einen KI-Griff, B bestätigt. Rechte seitliche Grifftaste halten: Greifhilfe. Zeigefinger-Trigger: Finger schließen. Zum Objekt weiter selbst hinführen.';
+ const candidates=Array.isArray(r.candidates)?r.candidates.slice(0,8):[];
+ const signature=JSON.stringify([candidates.map(c=>c.candidate_id),choice,choose,pendingEdge]);
+ if(signature!==lastCandidates){lastCandidates=signature;$('candidates').replaceChildren();candidates.forEach((c,i)=>{const el=document.createElement('button');el.textContent='Griff '+(i+1);el.title=c.candidate_id;el.dataset.candidateId=c.candidate_id;el.className=c.candidate_id===choice?'chosen':'';el.disabled=!choose||pendingEdge!==null;el.onclick=()=>{choice=c.candidate_id;command('select',choice)};$('candidates').append(el)});if(!candidates.length)$('candidates').textContent='Noch kein freigegebener Simulationskandidat.';}
+ $('clutch').disabled=!(choose&&(snap.clutch_available===true||snap.clutched===true)&&pendingEdge===null);
+ $('clutch').textContent=snap.clutched?'Hände neu abgleichen':'Hände abgleichen';
+ $('confirm').disabled=!(fresh&&owned()&&choice&&snap.selected_candidate_id===choice&&snap.clutched===true&&pendingEdge===null);
+ const confirmed=snap.confirmed_candidate_id||snap.confirmed?.candidate_id||snap.confirmed;
+ $('hold').disabled=!(fresh&&owned()&&confirmed&&snap.clutched===true&&r.input_hold_required!==true&&snap.input_hold_required===false&&pendingEdge===null&&!locallyDisarmed);
+ $('disarm').disabled=!owned()||scripted(s);
+ if((!fresh||(snap.clutched!==true&&!waitingForClutch))&&!locallyDisarmed&&pendingEdge===null)stop();
+ if($('hold').disabled&&holding){holding=false;$('hold').classList.remove('active');}
+ const labels={manual:'Manuelle Simulationssteuerung',assisting:'Handorientierung wird unterstützt',confirmed:'Griff bestätigt',selected:'Griff ausgewählt',clutched:'Handpositionen abgeglichen',clutch_required:'Simulation hält – Hände erneut abgleichen.',operator_invalid:'Simulation hält – XR-Eingabe fehlt oder ist veraltet.',runtime_motion_guard_rejected:'Simulation hält – aktuelle Bewegung nicht freigegeben.',source_stopped:'XR-Eingabequelle beendet.'};
+ $('status').textContent=labels[r.reason]||labels[snap.reason]||(snap.clutched?'Hände gekoppelt · '+(confirmed?'Griff bestätigt':'Griff noch nicht bestätigt'):'Simulation hält · Hände nicht gekoppelt');
+ if(r.ai_assist){
+  const a=r.ai_assist,aiLabels={learned_grasp_alignment:'KI-Greifhilfe aktiv',learned_candidates_ready:'KI-Griffe bereit',waiting_for_current_learned_proposals:'KI prüft das Ziel',assist_waiting_for_current_target:'KI wartet auf aktuelle Objektdaten',assist_waiting_for_wrist_depth:'KI wartet auf Tiefensicht der Handkamera',assist_candidate_changed:'KI-Griff geändert – neu auswählen',move_hand_near_selected_grasp:'Hand näher zum gewählten Griff führen'};
+  $('status').textContent+=' · '+(aiLabels[a.reason]||a.reason)+' · Korrektur '+(1000*a.translation_offset_m).toFixed(0)+' mm / '+a.rotation_offset_deg.toFixed(1)+'°';
+ }
+ if(s.frame_revision!==null&&s.frame_revision!==undefined&&s.frame_revision!==lastFrame){lastFrame=s.frame_revision;$('camera').src='/frame.jpg?id='+encodeURIComponent(lastFrame);}
+}
+async function poll(){try{const r=await fetch('/api/state',{headers:{'X-Copilot-Token':token}});if(!r.ok)throw Error('Verbindung unterbrochen');render(await r.json());}catch(e){$('notice').textContent=e.message;stop();$('hold').disabled=true;$('clutch').disabled=true;}setTimeout(poll,80);}
+(async()=>{try{const r=await fetch('/api/session');if(!r.ok)throw Error('Sitzung nicht verfügbar');token=(await r.json()).token;poll();}catch(e){$('notice').textContent=e.message;}})();
+</script></body></html>
